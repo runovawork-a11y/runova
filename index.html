@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Runova – All Runs. One Platform.</title>
+  <title>Runova – Find & Join Running Events Near You</title>
 
-  <!-- Clean, athletic fonts -->
+  <!-- Google Fonts: clean & athletic (existing fonts kept, expanded) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -30,22 +30,32 @@
     }
 
     h1 {
-      font-size: 3.2rem;
+      font-size: 3.4rem;
       font-weight: 800;
       line-height: 1.2;
       color: #1E2F3A;
       margin-bottom: 1.2rem;
     }
 
-    h1 span {
+    h1 .accent {
       color: #F05A28;
+      position: relative;
+      display: inline-block;
     }
 
     h2 {
       font-size: 2.2rem;
       font-weight: 700;
       color: #1E2F3A;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subhead {
+      color: #5A6E7E;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
     }
 
     h3 {
@@ -61,9 +71,17 @@
       margin-bottom: 1rem;
     }
 
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
     /* Buttons */
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background: #F05A28;
       color: white;
       padding: 0.8rem 2rem;
@@ -74,32 +92,32 @@
       transition: all 0.2s ease;
       border: none;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(240, 90, 40, 0.2);
+      box-shadow: 0 2px 8px rgba(240, 90, 40, 0.2);
+      gap: 8px;
     }
 
     .btn:hover {
       background: #D94A1A;
       transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(240, 90, 40, 0.25);
+      box-shadow: 0 10px 20px rgba(240, 90, 40, 0.25);
     }
 
-    .btn.secondary {
+    .btn-outline {
       background: transparent;
       color: #F05A28;
       border: 2px solid #F05A28;
       box-shadow: none;
     }
 
-    .btn.secondary:hover {
+    .btn-outline:hover {
       background: #F05A28;
       color: white;
+      transform: translateY(-2px);
     }
 
-    /* Layout */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
+    .btn-small {
+      padding: 0.5rem 1.2rem;
+      font-size: 0.85rem;
     }
 
     /* Navbar */
@@ -109,10 +127,12 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      backdrop-filter: blur(2px);
+      background: rgba(255, 255, 255, 0.96);
     }
 
     .navbar {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
       padding: 0.9rem 1.5rem;
       display: flex;
@@ -213,9 +233,9 @@
       border-bottom-color: #F05A28;
     }
 
-    /* Hero Section — image size fixed to fit properly */
+    /* Hero Section */
     .hero {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 3rem auto 4rem;
       padding: 0 1.5rem;
       display: flex;
@@ -230,151 +250,276 @@
 
     .hero-image {
       flex: 1;
-      /* container adapts to image size, no forced huge height */
-      border-radius: 28px;
+      border-radius: 32px;
       overflow: hidden;
-      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
-      background: #F1F3F6; /* fallback while image loads */
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.12);
+      background: #F2F4F8;
     }
 
     .hero-image img {
       width: 100%;
       height: auto;
-      /* ensures image fills width but keeps its natural aspect ratio */
-      object-fit: contain;
       display: block;
+      object-fit: cover;
       transition: transform 0.4s;
-      max-height: 450px; /* prevents oversized images, keeps layout balanced */
     }
 
     .hero-image:hover img {
-      transform: scale(1.01);
+      transform: scale(1.02);
     }
 
-    /* About Section */
-    .about {
-      max-width: 1200px;
-      margin: 4rem auto;
-      padding: 0 1.5rem;
+    .hero-buttons {
       display: flex;
-      align-items: center;
-      gap: 3rem;
+      gap: 1rem;
       flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    /* Section spacing */
+    section {
+      margin: 5rem 0;
+    }
+
+    /* Events Cards Grid */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .event-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      transition: all 0.25s ease;
+      border: 1px solid #EDF0F4;
+    }
+
+    .event-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px rgba(240, 90, 40, 0.12);
+      border-color: #FCE0D2;
+    }
+
+    .event-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: #F05A28;
+      margin: 0.5rem 0;
+      font-weight: 500;
+    }
+
+    .event-meta span {
+      background: #FEF3EC;
+      padding: 0.2rem 0.6rem;
+      border-radius: 30px;
+    }
+
+    .event-desc {
+      font-size: 0.9rem;
+      margin: 0.8rem 0 1rem;
+      color: #5A6E7E;
+    }
+
+    .event-card .btn-small {
+      margin-top: 0.5rem;
+    }
+
+    /* Community section */
+    .community-wrapper {
       background: #FFFFFF;
       border-radius: 2rem;
-      padding: 2.5rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
-      border: 1px solid #F0F2F5;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      align-items: center;
+      padding: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02);
+      border: 1px solid #F0F2F6;
     }
 
-    .about-text {
+    .community-text {
       flex: 1;
     }
 
-    .about-image {
+    .community-image {
       flex: 1;
       border-radius: 1.5rem;
       overflow: hidden;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
-      background: #F5F7FA;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     }
 
-    .about-image img {
+    .community-image img {
       width: 100%;
       height: auto;
       display: block;
       object-fit: cover;
     }
 
-    /* Features */
-    .features {
-      max-width: 1200px;
-      margin: 4rem auto;
-      text-align: center;
-      padding: 0 1.5rem;
+    .bullet-list {
+      list-style: none;
+      margin: 1.5rem 0;
     }
 
-    .features h2 {
-      margin-bottom: 2rem;
-    }
-
-    .feature-container {
+    .bullet-list li {
+      margin-bottom: 0.8rem;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 1rem;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
     }
 
-    .feature-card {
-      background: #FFFFFF;
-      border-radius: 1.8rem;
-      padding: 2rem 1.5rem;
-      flex: 1;
-      min-width: 220px;
-      transition: all 0.25s;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    .bullet-list li::before {
+      content: "🏃";
+      font-size: 1.2rem;
+    }
+
+    /* Event Types Cards */
+    .types-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .type-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      text-align: center;
+      transition: 0.2s;
       border: 1px solid #EDF0F4;
     }
 
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 16px 28px -8px rgba(240, 90, 40, 0.12);
+    .type-card:hover {
+      background: #FEFAF7;
       border-color: #FCDBCE;
     }
 
-    .feature-card img {
-      width: 70px;
-      height: 70px;
-      object-fit: cover;
-      border-radius: 20px;
+    .type-icon {
+      font-size: 2.4rem;
       margin-bottom: 1rem;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.04);
     }
 
-    .feature-card h3 {
-      margin: 0.8rem 0 0.4rem;
+    .type-card h3 {
+      margin-top: 0;
     }
 
-    .feature-card p {
-      font-size: 0.95rem;
-    }
-
-    /* CTA */
-    .cta {
-      background: #FEF3EC;
-      margin: 4rem auto;
+    /* Location Section */
+    .location-card {
+      background: linear-gradient(135deg, #FEF6F0 0%, #FFFFFF 100%);
       border-radius: 2rem;
-      max-width: 1000px;
-      padding: 3rem 2rem;
+      padding: 2rem;
       text-align: center;
-      border: 1px solid #FCE3D6;
+      border: 1px solid #FFE4D8;
     }
 
-    .cta-content h2 {
-      color: #1E2F3A;
-      font-size: 2rem;
+    .map-placeholder {
+      background: #EFF3F8;
+      border-radius: 1.5rem;
+      padding: 3rem 1rem;
+      margin-top: 1.5rem;
+      border: 2px dashed #CDD7E3;
+      transition: 0.2s;
+    }
+
+    .map-placeholder p {
+      margin: 0;
+      font-weight: 500;
+      color: #F05A28;
+    }
+
+    /* Visual gallery - keeps existing images intact */
+    .visual-gallery {
+      background: #FCF9F5;
+      border-radius: 2rem;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .gallery-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .gallery-item {
+      flex: 1;
+      min-width: 160px;
+      background: white;
+      border-radius: 1.2rem;
+      padding: 1rem;
+      transition: all 0.2s;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 1rem;
       margin-bottom: 0.5rem;
     }
 
-    .cta-content p {
-      color: #5A6E7E;
+    .gallery-item p {
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: #F05A28;
+      border-radius: 2rem;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: white;
+      margin: 4rem auto;
+    }
+
+    .cta-section h2 {
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,240,0.9);
       margin-bottom: 1.8rem;
+    }
+
+    .cta-section .btn {
+      background: white;
+      color: #F05A28;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+    }
+
+    .cta-section .btn-outline-light {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      margin-left: 0.8rem;
+    }
+
+    .cta-section .btn-outline-light:hover {
+      background: white;
+      color: #F05A28;
     }
 
     /* Footer */
     footer {
       background: #F8F9FB;
       padding: 2.5rem 1.5rem 2rem;
-      margin-top: 2rem;
+      margin-top: 3rem;
       border-top: 1px solid #E9EDF2;
     }
 
     .footer-content {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
       text-align: center;
     }
@@ -415,80 +560,31 @@
       opacity: 0.7;
     }
 
-    /* Responsive */
-    @media (max-width: 950px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .nav-links {
-        flex-wrap: wrap;
-        gap: 1.2rem;
-      }
-      h1 {
-        font-size: 2.4rem;
-      }
-      h2 {
-        font-size: 1.9rem;
-      }
-      .hero {
-        flex-direction: column-reverse;
-        text-align: center;
-      }
-      .hero-buttons {
-        justify-content: center;
-      }
-      .about {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.8rem;
-      }
-      .feature-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .feature-card {
-        width: 100%;
-        max-width: 340px;
-      }
-      .hero-image img {
-        max-height: 350px;
-      }
+    @media (max-width: 850px) {
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 1.9rem; }
+      .hero { flex-direction: column-reverse; text-align: center; }
+      .hero-buttons { justify-content: center; }
+      .community-wrapper { flex-direction: column; text-align: center; }
+      .bullet-list li { justify-content: center; }
+      .navbar { flex-direction: column; align-items: flex-start; }
+      .nav-links { flex-wrap: wrap; gap: 1.2rem; }
+      .cta-section .btn { margin: 0.5rem; }
     }
 
-    @media (max-width: 650px) {
-      .kite-image-wrapper {
-        width: 54px;
-        height: 54px;
-      }
-      .logo-text {
-        font-size: 1.5rem;
-      }
-      .navbar {
-        padding: 0.7rem 1rem;
-      }
-      .hero, .about, .features {
-        margin: 2rem auto;
-        padding: 0 1rem;
-      }
-      .about {
-        padding: 1.5rem;
-      }
-      .btn {
-        padding: 0.6rem 1.4rem;
-      }
-      .hero-image img {
-        max-height: 280px;
-      }
+    @media (max-width: 550px) {
+      .kite-image-wrapper { width: 54px; height: 54px; }
+      .logo-text { font-size: 1.5rem; }
+      .events-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ================= NAVBAR (SAME LOGO & LINKS) ================= -->
+<!-- ================= HEADER (PRESERVED LOGO + NAV) ================= -->
 <header>
   <nav class="navbar">
-    <a href="/" class="logo kite-logo">
+    <a href="index.html" class="logo kite-logo">
       <div class="kite-image-wrapper">
         <img class="kite-image" src="runova-logo.jpeg" alt="Runova Logo">
         <div class="kite-tail"></div>
@@ -504,74 +600,153 @@
   </nav>
 </header>
 
-<!-- ================= HERO SECTION (IMAGE SIZED CORRECTLY) ================= -->
-<section class="hero">
-  <div class="hero-image">
-    <img src="hero-runova.jpeg" alt="Running community">
-  </div>
-  <div class="hero-text">
-    <h1>All Runs. <span>One Platform.</span></h1>
-    <p>
-      Discover marathon events across India or join virtual runs anytime,
-      anywhere. Runova brings the running community together in one place.
-    </p>
-    <div class="hero-buttons">
-      <a href="explore.html" class="btn">Explore Runs</a>
-      <a href="events.html" class="btn secondary">Join Runova Events</a>
+<main>
+  <!-- ================= HERO SECTION (STRONG CTA) ================= -->
+  <div class="container">
+    <div class="hero">
+      <div class="hero-text">
+        <h1>Find Running Events <span class="accent">Near You</span></h1>
+        <p style="font-size: 1.2rem;">From local 5Ks to major marathons — never miss a run again. Join the fastest-growing running community.</p>
+        <div class="hero-buttons">
+          <a href="#upcoming-events" class="btn">Explore Events</a>
+          <a href="#" class="btn btn-outline">Host an Event</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="hero-runova.jpeg" alt="Runners in community event">
+      </div>
     </div>
   </div>
-</section>
 
-<!-- ================= ABOUT SECTION (ORIGINAL TEXT) ================= -->
-<section class="about">
-  <div class="about-text">
-    <h2>About Runova</h2>
-    <p>
-      Runova is your ultimate running companion. Whether you're looking for
-      marathons in your city or want to participate in virtual challenges,
-      we’ve got you covered.
-    </p>
-    <p>
-      Track your runs, compete with others, and earn certificates — all in one place.
-    </p>
-  </div>
-  <div class="about-image">
-    <img src="about-runova.jpeg" alt="Runners on track">
-  </div>
-</section>
-
-<!-- ================= FEATURES (EXACT IMAGES) ================= -->
-<section class="features">
-  <h2>Why Choose Runova?</h2>
-  <div class="feature-container">
-    <div class="feature-card">
-      <img src="run-why choise.png" alt="Find runs">
-      <h3>Find Runs</h3>
-      <p>Discover running events across different cities in India.</p>
-    </div>
-    <div class="feature-card">
-      <img src="virtual-runova.jpeg" alt="Virtual runs">
-      <h3>Virtual Events</h3>
-      <p>Join 5K, 10K, or 21K challenges anytime, anywhere.</p>
-    </div>
-    <div class="feature-card">
-      <img src="earn-runova.png" alt="Rewards">
-      <h3>Earn Rewards</h3>
-      <p>Get certificates and medals for your achievements.</p>
+  <!-- ================= UPCOMING EVENTS SECTION (CARDS) ================= -->
+  <div class="container" id="upcoming-events">
+    <h2>🏁 Upcoming Events</h2>
+    <p class="section-subhead">Discover runs happening near you this week. Lace up and join the fun!</p>
+    <div class="events-grid">
+      <!-- Event Card 1 -->
+      <div class="event-card">
+        <h3>Sunset Beach 5K</h3>
+        <div class="event-meta"><span>📍 Marina Beach, Chennai</span><span>📅 Apr 12, 6:00 PM</span></div>
+        <p class="event-desc">Breathtaking sunset run along the coastline. Open to all paces.</p>
+        <a href="#" class="btn btn-small">Join Event →</a>
+      </div>
+      <!-- Event Card 2 -->
+      <div class="event-card">
+        <h3>Runova Night Trail</h3>
+        <div class="event-meta"><span>📍 Sanjay Gandhi NP, Mumbai</span><span>📅 Apr 15, 7:30 PM</span></div>
+        <p class="event-desc">Night headlamp run through scenic trails. Post-run chai meetup.</p>
+        <a href="#" class="btn btn-small">Join Event →</a>
+      </div>
+      <!-- Event Card 3 -->
+      <div class="event-card">
+        <h3>Sunday Long Run</h3>
+        <div class="event-meta"><span>📍 Cubbon Park, Bengaluru</span><span>📅 Apr 14, 6:30 AM</span></div>
+        <p class="event-desc">Weekly long run, 10K/16K options. Pacers available.</p>
+        <a href="#" class="btn btn-small">Join Event →</a>
+      </div>
+      <!-- Event Card 4 -->
+      <div class="event-card">
+        <h3>Delhi Half Marathon Prep</h3>
+        <div class="event-meta"><span>📍 Nehru Park, Delhi</span><span>📅 Apr 18, 5:30 AM</span></div>
+        <p class="event-desc">Group interval session + expert tips for race season.</p>
+        <a href="#" class="btn btn-small">Join Event →</a>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- ================= CTA SECTION (ORIGINAL BUTTON) ================= -->
-<section class="cta">
-  <div class="cta-content">
-    <h2>Start Your Running Journey Today</h2>
-    <p>Join thousands of runners across India.</p>
-    <a href="events.html" class="btn">Get Started</a>
+  <!-- ================= COMMUNITY SECTION "RUN TOGETHER, NOT ALONE" ================= -->
+  <div class="container">
+    <div class="community-wrapper">
+      <div class="community-text">
+        <h2>Run Together, Not Alone</h2>
+        <p>Running is better with company. Join a thriving community that cheers, supports, and celebrates every mile.</p>
+        <ul class="bullet-list">
+          <li>Meet local runners in your city</li>
+          <li>Stay consistent with group accountability</li>
+          <li>Join weekly group runs & social miles</li>
+        </ul>
+        <a href="explore.html" class="btn btn-outline" style="margin-top: 0.5rem;">Find your crew →</a>
+      </div>
+      <div class="community-image">
+        <img src="about-runova.jpeg" alt="Runova community running together">
+      </div>
+    </div>
   </div>
-</section>
 
-<!-- ================= FOOTER (ALL LINKS INTACT) ================= -->
+  <!-- ================= EVENT TYPES SECTION (RUNOVA + LOCAL + MARATHONS) ================= -->
+  <div class="container">
+    <h2>🏅 Event Types for Every Runner</h2>
+    <p class="section-subhead">Curated runs, local meetups, and world-class marathons — all in one place.</p>
+    <div class="types-grid">
+      <div class="type-card">
+        <div class="type-icon">🏃‍♂️⚡</div>
+        <h3>Official Runova Events</h3>
+        <p>Timed runs, medals, chip-timing & pro photo moments. Organized by Runova crew.</p>
+      </div>
+      <div class="type-card">
+        <div class="type-icon">🌳👟</div>
+        <h3>Local Community Runs</h3>
+        <p>Free park runs, coffee runs & easy-paced social miles hosted by local captains.</p>
+      </div>
+      <div class="type-card">
+        <div class="type-icon">🏅🌍</div>
+        <h3>Upcoming Marathons</h3>
+        <p>Major city marathons, ultra trails & championship qualifiers.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= LOCATION-BASED FEATURE SECTION ================= -->
+  <div class="container">
+    <div class="location-card">
+      <h2>📍 Find Events Near You</h2>
+      <p>Discover runs within 10km, filter by distance, pace, or date. Your next starting line is around the corner.</p>
+      <div class="map-placeholder">
+        <p>🗺️ Interactive map — filter runs by your location (coming to Runova)</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">🔍 Nearby: 5 events within 5km • 3 group runs this weekend</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= VISUAL GALLERY (PRESERVING ALL EXISTING IMAGES) ================= -->
+  <div class="container">
+    <div class="visual-gallery">
+      <h2>Moments from the Runova Fam</h2>
+      <p class="section-subhead">Real runs, real smiles, real community.</p>
+      <div class="gallery-grid">
+        <!-- Existing image: run-why choise.png -->
+        <div class="gallery-item">
+          <img src="run-why choise.png" alt="Runner choosing event">
+          <p>Find your perfect race</p>
+        </div>
+        <!-- Existing image: virtual-runova.jpeg -->
+        <div class="gallery-item">
+          <img src="virtual-runova.jpeg" alt="Virtual run challenge">
+          <p>Virtual runs, global reach</p>
+        </div>
+        <!-- Existing image: earn-runova.png -->
+        <div class="gallery-item">
+          <img src="earn-runova.png" alt="Earn medals & certificates">
+          <p>Earn badges & rewards</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CALL TO ACTION SECTION "READY TO RUN?" ================= -->
+  <div class="container">
+    <div class="cta-section">
+      <h2>Ready to Run?</h2>
+      <p>Join thousands of runners discovering local events every day. Your next PR starts here.</p>
+      <div>
+        <a href="#upcoming-events" class="btn">Explore Events</a>
+        <a href="explore.html" class="btn btn-outline-light">Join the Community</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ================= FOOTER (PRESERVED LINKS & STRUCTURE) ================= -->
 <footer>
   <div class="footer-content">
     <h3>Runova</h3>
