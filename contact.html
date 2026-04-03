@@ -2,177 +2,386 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Runova</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contact Runova – Get in Touch</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts (consistent with other pages) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Main CSS -->
+  <!-- Main CSS (preserved) -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Additional styling for bigger form and contact page enhancements -->
   <style>
-    /* Make the contact section more spacious */
-    .contact-container {
-      max-width: 1200px;
-      margin: 4rem auto;
-      padding: 0 2rem;
+    /* Additional styling for contact page – modern, friendly, mobile-first */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #FEFCF8;
+      color: #1F2E3A;
+      line-height: 1.5;
+    }
+
+    h1, h2, h3, .logo-text, .nav-links a, .btn {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    /* Navbar (kite logo – same as index.html) */
+    .navbar {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
       display: flex;
-      gap: 4rem;
-      align-items: flex-start;
+      align-items: center;
+      justify-content: space-between;
       flex-wrap: wrap;
-    }
-
-    .contact-image {
-      flex: 1;
-      min-width: 280px;
-    }
-
-    .contact-image img {
-      width: 100%;
-      border-radius: 2rem;
-      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
-      object-fit: cover;
-    }
-
-    /* Larger form box */
-    .contact-form-box {
-      flex: 1.4;
+      gap: 1.2rem;
       background: #ffffff;
-      border-radius: 2rem;
+      border-bottom: 1px solid #e9edf2;
+    }
+    .kite-logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 12px;
+    }
+    .kite-image-wrapper {
+      position: relative;
+      width: 64px;
+      height: 64px;
+      animation: softFloat 2.8s ease-in-out infinite;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+    }
+    .kite-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      transition: transform 0.2s;
+    }
+    .kite-logo:hover .kite-image {
+      transform: scale(1.02);
+    }
+    .kite-tail {
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 24px;
+      background: #F05A28;
+      border-radius: 2px;
+    }
+    .kite-tail::before,
+    .kite-tail::after {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #F9A26C;
+      border-radius: 2px;
+      bottom: -6px;
+      left: -5px;
+      transform: rotate(45deg);
+    }
+    .kite-tail::after {
+      left: auto;
+      right: -5px;
+      background: #F05A28;
+    }
+    .logo-text {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #1F2E3A;
+      letter-spacing: -0.5px;
+    }
+    @keyframes softFloat {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+      100% { transform: translateY(0px); }
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #2C3E4E;
+      transition: 0.2s;
+      font-size: 1rem;
+      padding: 0.4rem 0;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #F05A28;
+      border-bottom-color: #F05A28;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Page Header */
+    .page-header {
+      text-align: center;
+      padding: 3rem 0 1rem;
+    }
+    .page-header h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #1E2F3A;
+    }
+    .page-header p {
+      font-size: 1.1rem;
+      color: #5A6E7E;
+      max-width: 680px;
+      margin: 0.5rem auto 0;
+    }
+
+    /* Two-column layout: form + contact info & collaboration */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin: 2rem 0 3rem;
+    }
+
+    /* Form Card */
+    .form-card {
+      background: white;
+      border-radius: 1.8rem;
       padding: 2rem;
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05);
-      border: 1px solid #eef2ff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      border: 1px solid #EDF0F4;
     }
-
-    /* Increase form field sizes */
+    .form-card h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+    }
     .form-group {
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.2rem;
     }
-
     .form-group label {
       display: block;
       font-weight: 600;
-      margin-bottom: 0.6rem;
-      color: #0f172a;
-      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
     }
-
-    .form-group input,
-    .form-group textarea {
+    .form-group input, .form-group select, .form-group textarea {
       width: 100%;
-      padding: 1rem 1.2rem;
-      font-size: 1rem;
-      font-family: 'Poppins', sans-serif;
-      border: 1px solid #e2e8f0;
+      padding: 0.8rem 1rem;
+      border: 1px solid #E2E8F0;
       border-radius: 1rem;
-      background: #fafcff;
-      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      background: #FFFFFF;
+      transition: 0.2s;
     }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
       outline: none;
-      border-color: #10b981;
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-      background: white;
+      border-color: #F05A28;
+      box-shadow: 0 0 0 3px rgba(240, 90, 40, 0.1);
     }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 150px;
-    }
-
-    /* Bigger button */
-    .contact-form-box .btn {
-      width: 100%;
-      text-align: center;
-      padding: 1rem;
-      font-size: 1.1rem;
-      background: linear-gradient(105deg, #10b981, #06b6d4);
-      border: none;
+    .btn-primary {
+      background: #F05A28;
       color: white;
+      border: none;
+      padding: 0.9rem 1.5rem;
+      border-radius: 60px;
       font-weight: 600;
-      border-radius: 3rem;
+      font-size: 1rem;
       cursor: pointer;
-      transition: all 0.25s;
+      width: 100%;
+      transition: 0.2s;
     }
-
-    .contact-form-box .btn:hover {
+    .btn-primary:hover {
+      background: #D94A1A;
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
     }
-
     #formStatus {
       margin-top: 1rem;
+      font-size: 0.85rem;
       text-align: center;
-      font-size: 0.9rem;
       color: #10b981;
     }
 
-    /* Social section styling (consistent with style.css) */
-    .social {
+    /* Info Cards */
+    .info-card {
+      background: white;
+      border-radius: 1.8rem;
+      padding: 1.5rem;
+      margin-bottom: 1.8rem;
+      border: 1px solid #EDF0F4;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+    .info-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+    .contact-detail {
+      margin: 0.8rem 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+    }
+    .contact-detail a {
+      color: #F05A28;
+      text-decoration: none;
+    }
+    .host-btn {
+      background: transparent;
+      border: 2px solid #F05A28;
+      color: #F05A28;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 0.5rem;
+      transition: 0.2s;
+    }
+    .host-btn:hover {
+      background: #F05A28;
+      color: white;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      margin: 3rem 0;
+      background: #FFFFFF;
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid #EDF0F4;
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .faq-item {
+      background: #FEFCF8;
+      padding: 1.2rem;
+      border-radius: 1.2rem;
+    }
+    .faq-item h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: #F05A28;
+    }
+
+    /* CTA Section */
+    .cta-community {
+      background: linear-gradient(135deg, #FEF3EC, #FFF5EF);
+      border-radius: 2rem;
+      padding: 2.5rem;
       text-align: center;
-      padding: 4rem 2rem;
-      background: #ffffff;
-      border-top: 1px solid #eef2ff;
+      margin: 2rem 0 3rem;
+    }
+    .cta-community h2 {
+      font-size: 1.8rem;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.2rem;
+    }
+    .btn-secondary {
+      background: white;
+      color: #F05A28;
+      border: 2px solid #F05A28;
+      padding: 0.7rem 1.5rem;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .btn-secondary:hover {
+      background: #F05A28;
+      color: white;
     }
 
-    .social h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: #0f172a;
+    /* Footer */
+    footer {
+      background: #F8F9FB;
+      padding: 2rem 1.5rem;
+      margin-top: 2rem;
+      border-top: 1px solid #E9EDF2;
     }
-
-    .social-links {
+    .footer-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .footer-content h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1F2E3A;
+      margin-bottom: 0.3rem;
+    }
+    .footer-links {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 2rem;
+      margin: 1rem 0;
       flex-wrap: wrap;
     }
-
-    .social-btn {
-      background: #f1f5f9;
-      color: #0f172a;
-      padding: 0.8rem 2rem;
-      border-radius: 3rem;
+    .footer-links a {
+      color: #4A5B6B;
       text-decoration: none;
       font-weight: 500;
-      transition: all 0.2s;
-      border: 1px solid #e2e8f0;
+    }
+    .footer-links a:hover {
+      color: #F05A28;
+    }
+    .copyright {
+      font-size: 0.8rem;
+      opacity: 0.7;
     }
 
-    .social-btn:hover {
-      background: #10b981;
-      color: white;
-      border-color: #10b981;
-      transform: translateY(-2px);
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .contact-container {
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+      .navbar {
         flex-direction: column;
-        gap: 2rem;
-        margin: 2rem auto;
-      }
-      .contact-form-box {
-        padding: 1.5rem;
-      }
-      .form-group input,
-      .form-group textarea {
-        padding: 0.8rem 1rem;
+        align-items: flex-start;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- ================= NAVBAR (KITE LOGO – asset runova-logo.jpeg preserved) ================= -->
 <header>
   <nav class="navbar">
-    <h2 class="logo">Runova</h2>
+    <a href="index.html" class="logo kite-logo">
+      <div class="kite-image-wrapper">
+        <img class="kite-image" src="runova-logo.jpeg" alt="Runova Logo">
+        <div class="kite-tail"></div>
+      </div>
+      <span class="logo-text">Runova</span>
+    </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="explore.html">Explore Runs</a></li>
@@ -182,89 +391,144 @@
   </nav>
 </header>
 
-<!-- ================= PAGE HEADER ================= -->
-<section class="page-header" style="text-align: center; padding: 4rem 2rem 2rem; background: #ffffff;">
-  <h1 style="font-size: 2.8rem; color: #0f172a;">Contact Us</h1>
-  <p style="font-size: 1.2rem; color: #475569; max-width: 700px; margin: 1rem auto 0;">Have questions or want to collaborate? We'd love to hear from you.</p>
-</section>
+<main>
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1>Contact Runova</h1>
+      <p>Have a question, want to host an event, or collaborate? We'd love to hear from you.</p>
+    </div>
 
-<!-- ================= CONTACT SECTION (BIG FORM) ================= -->
-<section class="contact-container">
-
-  <!-- LEFT IMAGE -->
-  <div class="contact-image">
-    <img src="contact-runova.png" alt="Contact Runova">
-  </div>
-
-  <!-- RIGHT FORM (Larger) -->
-  <div class="contact-form-box">
-    <form id="contactForm">
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" id="name" placeholder="Enter your name" required>
+    <!-- Main Contact Grid: Form + Contact Info & Collaboration -->
+    <div class="contact-grid">
+      <!-- Contact Form -->
+      <div class="form-card">
+        <h2>📬 Send us a message</h2>
+        <form id="contactForm">
+          <div class="form-group">
+            <label>Full name *</label>
+            <input type="text" id="name" placeholder="e.g., Priya Sharma" required>
+          </div>
+          <div class="form-group">
+            <label>Email address *</label>
+            <input type="email" id="email" placeholder="hello@runova.com" required>
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <select id="subject">
+              <option value="General inquiry">General inquiry</option>
+              <option value="Event support">Event support</option>
+              <option value="Partnership / Hosting">Partnership / Hosting</option>
+              <option value="Feedback">Feedback</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message *</label>
+            <textarea id="message" rows="5" placeholder="Tell us how we can help..."></textarea>
+          </div>
+          <button type="button" class="btn-primary" onclick="sendToWhatsApp(event)">Send Message</button>
+          <div id="formStatus"></div>
+        </form>
       </div>
 
-      <div class="form-group">
-        <label>Email Address</label>
-        <input type="email" id="email" placeholder="your@gmail.com" required>
+      <!-- Right side: Contact info + Collaboration -->
+      <div>
+        <div class="info-card">
+          <h3>📞 Get in touch</h3>
+          <div class="contact-detail">✉️ <a href="mailto:runova.work@gmail.com">runova.work@gmail.com</a></div>
+          <div class="contact-detail">📱 <a href="https://wa.me/919387804914" target="_blank">+91 93878 04914 (WhatsApp)</a></div>
+          <div class="contact-detail">📍 Based in India | Serving runners nationwide</div>
+        </div>
+
+        <div class="info-card">
+          <h3>🤝 Host Your Own Run</h3>
+          <p>Partner with Runova to list and promote your running event. We help organizers reach thousands of passionate runners.</p>
+          <a href="#" class="host-btn" onclick="alert('🚀 Hosting inquiry: reach out to runova.work@gmail.com')">Host an Event →</a>
+        </div>
+
+        <!-- Friendly visual touch: existing image contact-runova.png -->
+        <div style="border-radius: 1.5rem; overflow: hidden; margin-top: 0.5rem;">
+          <img src="contact-runova.png" alt="Runova community" style="width:100%; display:block;">
+        </div>
       </div>
+    </div>
 
-      <div class="form-group">
-        <label>Your Message</label>
-        <textarea id="message" rows="6" placeholder="Tell us about your running goals, questions, or collaboration ideas..."></textarea>
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <h2 style="text-align: center;">❓ Frequently asked questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>How do I join a Runova event?</h4>
+          <p>Visit our <a href="events.html">Runova Events</a> page, choose an event, and click "Join Event". Virtual runs are open to all.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I host my own run on Runova?</h4>
+          <p>Absolutely! We welcome event organizers. Use the "Host an Event" button above or email us directly.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Are Runova events free?</h4>
+          <p>Some community runs are free; official virtual challenges have a small registration fee that includes medals & certificates.</p>
+        </div>
+        <div class="faq-item">
+          <h4>How do I get support for an event?</h4>
+          <p>Reach out via our contact form or WhatsApp. We respond within 24 hours.</p>
+        </div>
       </div>
+    </div>
 
-      <button class="btn" onclick="sendToWhatsApp(event)">Send Message via WhatsApp</button>
-      <p id="formStatus"></p>
-    </form>
+    <!-- CTA Section: Join the Runova Community -->
+    <div class="cta-community">
+      <h2>🏃‍♀️ Join the Runova Community</h2>
+      <p>Thousands of runners are discovering events, building consistency, and making friends. Your next run awaits.</p>
+      <div class="cta-buttons">
+        <a href="explore.html" class="btn-secondary">Explore Events</a>
+        <a href="events.html" class="btn-secondary">View Runova Events</a>
+      </div>
+    </div>
   </div>
+</main>
 
-</section>
-
-<!-- ================= SOCIAL CONNECT ================= -->
-<section class="social">
-  <h2>Connect with us</h2>
-  <div class="social-links">
-    <a href="#" class="social-btn">Instagram</a>
-    <a href="mailto:runova.work@gmail.com" class="social-btn">Email</a>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
+<!-- ================= FOOTER (preserved links + improved) ================= -->
 <footer>
   <div class="footer-content">
     <h3>Runova</h3>
     <p>All Runs. One Platform.</p>
     <div class="footer-links">
-      <a href="https://www.instagram.com/runovaofficialpage?igsh=MXc5MWlhZzhycWE2bg==">Instagram</a>
-      <a href="runova.work@gmail.com">Email</a>
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="events.html">Runova Events</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://www.instagram.com/runovaofficialpage" target="_blank">Instagram</a>
+      <a href="mailto:runova.work@gmail.com">Email</a>
     </div>
-    <p>© 2026 Runova. All rights reserved.</p>
+    <p class="copyright">© 2026 Runova. All rights reserved.</p>
   </div>
 </footer>
 
-<!-- ================= SCRIPT (WhatsApp) ================= -->
 <script>
-function sendToWhatsApp(e) {
-  e.preventDefault();
+  // WhatsApp integration (preserves existing functionality with enhanced fields)
+  function sendToWhatsApp(event) {
+    event.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value.trim();
 
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const message = document.getElementById('message').value;
+    if (!name || !email) {
+      document.getElementById('formStatus').innerText = '⚠️ Please fill in your name and email.';
+      return;
+    }
 
-  // Basic validation
-  if (!name.trim() || !email.trim()) {
-    document.getElementById('formStatus').innerText = 'Please fill in your name and email.';
-    return;
+    const fullMessage = `*Contact from Runova website*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Subject:* ${subject}%0A*Message:* ${message}`;
+    const phone = "919387804914";
+    const url = `https://wa.me/${phone}?text=${fullMessage}`;
+    window.open(url, "_blank");
+    document.getElementById('formStatus').innerText = '✓ Opening WhatsApp... Send us your message!';
+    // optional: clear status after 3 sec
+    setTimeout(() => {
+      document.getElementById('formStatus').innerText = '';
+    }, 4000);
   }
-
-  const text = `Hello Runova,%0AName: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
-  const phone = "919387804914";
-  const url = `https://wa.me/${phone}?text=${text}`;
-
-  window.open(url, "_blank");
-  document.getElementById('formStatus').innerText = 'Opening WhatsApp...';
-}
 </script>
 
 </body>
