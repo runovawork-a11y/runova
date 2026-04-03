@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Explore Runs · Runova | Find your next race</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    }
+
+    body {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    /* ========== NAVBAR (unchanged structure) ========== */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 8%;
+      background: white;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .logo {
+      font-size: 1.7rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #10b981, #06b6d4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .circle-image-wrapper {
+      display: inline-block;
+    }
+    .circle-image {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #e2e8f0;
+    }
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.7rem;
+      background: linear-gradient(135deg, #10b981, #06b6d4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #1e293b;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #10b981;
+    }
+
+    /* page header */
+    .page-header {
+      text-align: center;
+      padding: 2.5rem 2rem 1rem;
+    }
+    .page-header h1 {
+      font-size: 2.4rem;
+      background: linear-gradient(120deg, #0f172a, #2d3a5e);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .page-header p {
+      color: #475569;
+      font-size: 1rem;
+    }
+
+    /* === NEW FILTER SECTION (prominent search + chips + legacy filters) === */
+    .search-section {
+      background: white;
+      margin: 1rem 8% 0;
+      padding: 1.5rem 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+      border: 1px solid #eef2ff;
+    }
+    .prominent-search {
+      margin-bottom: 1.2rem;
+    }
+    .prominent-search input {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 60px;
+      background: #ffffff;
+      transition: all 0.2s;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+    .prominent-search input:focus {
+      border-color: #10b981;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
+    }
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+      align-items: center;
+    }
+    .chip {
+      background: #f1f5f9;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #1e293b;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .chip.active {
+      background: #10b981;
+      color: white;
+      box-shadow: 0 2px 6px rgba(16,185,129,0.2);
+    }
+    .chip:hover:not(.active) {
+      background: #e2e8f0;
+      transform: translateY(-1px);
+    }
+    .legacy-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+    }
+    .legacy-filters-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+    }
+    .legacy-filters input, .legacy-filters button {
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      border: 1px solid #e2e8f0;
+      background: white;
+      font-size: 0.85rem;
+    }
+    .btn-filter {
+      background: #10b981;
+      color: white;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-filter:hover {
+      background: #0d9668;
+    }
+    .btn-reset {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      cursor: pointer;
+    }
+    .results-hint {
+      font-size: 0.85rem;
+      color: #475569;
+      margin-top: 0.6rem;
+      border-left: 3px solid #10b981;
+      padding-left: 0.8rem;
+    }
+
+    /* runs container – enhanced event cards */
+    .runs-container {
+      max-width: 1280px;
+      margin: 1.5rem auto 0;
+      padding: 0 8% 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      position: relative;
+    }
+
+    /* EVENT CARD redesign: better spacing & clarity */
+    .event-card {
+      display: flex;
+      flex-direction: row;
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+      transition: all 0.25s ease;
+      border: 1px solid #eef2ff;
+    }
+    .event-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.08);
+    }
+    .event-image {
+      flex: 0 0 280px;
+      min-width: 240px;
+      background: #eef2ff;
+    }
+    .event-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      aspect-ratio: 4 / 3;
+    }
+    .event-details {
+      flex: 1;
+      padding: 1.5rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .event-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: #0f172a;
+      margin-bottom: 0.1rem;
+    }
+    .distance-badge {
+      display: inline-flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin: 0.2rem 0;
+    }
+    .dist-tag {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .event-meta-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.9rem;
+      color: #334155;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 0.7rem;
+      margin-bottom: 0.2rem;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .meta-item strong {
+      font-weight: 600;
+      color: #0f172a;
+    }
+    .venue-address {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: #2c3e66;
+      background: #f8fafc;
+      padding: 0.3rem 0.8rem;
+      border-radius: 30px;
+      width: fit-content;
+    }
+    .event-contact {
+      font-size: 0.85rem;
+      color: #2c3e66;
+      background: #f1f5f9;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      width: fit-content;
+    }
+    .register-btn {
+      margin-top: 0.4rem;
+      background: linear-gradient(105deg, #10b981, #06b6d4);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      width: fit-content;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: 0.2s;
+      display: inline-block;
+      box-shadow: 0 2px 6px rgba(16,185,129,0.2);
+    }
+    .register-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(16,185,129,0.3);
+    }
+
+    /* gradient fade + subtle view-more section */
+    .fade-more-container {
+      position: relative;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .gradient-fade {
+      position: relative;
+      height: 70px;
+      margin-top: -50px;
+      background: linear-gradient(to bottom, rgba(248,250,252,0), #f8fafc);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .subtle-view-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(4px);
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #10b981;
+      text-decoration: none;
+      border: 1px solid #d1fae5;
+      transition: 0.2s;
+      margin-top: 8px;
+    }
+    .subtle-view-more:hover {
+      background: white;
+      border-color: #10b981;
+    }
+
+    /* de-emphasized "View More Events" button (kept but subtle) */
+    .load-more-subtle {
+      text-align: center;
+      margin: 1rem 0 2rem;
+    }
+    .btn-subtle {
+      background: transparent;
+      border: 1px solid #cbd5e1;
+      color: #64748b;
+      padding: 0.5rem 1.8rem;
+      font-size: 0.8rem;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s;
+      backdrop-filter: blur(2px);
+    }
+    .btn-subtle:hover {
+      background: #f1f5f9;
+      border-color: #10b981;
+      color: #0f172a;
+    }
+
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 2.5rem 8% 2rem;
+      margin-top: 2rem;
+    }
+    .footer-content {
+      text-align: center;
+    }
+    .footer-content h3 {
+      color: white;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.8rem;
+      justify-content: center;
+      margin: 1.2rem 0;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      color: #10b981;
+    }
+
+    @media (max-width: 760px) {
+      .event-card {
+        flex-direction: column;
+      }
+      .event-image {
+        flex: auto;
+        height: 220px;
+      }
+      .event-details {
+        padding: 1.2rem;
+      }
+      .search-section {
+        margin: 1rem 4%;
+      }
+      .runs-container {
+        padding: 0 5% 2rem;
+      }
+      .event-title {
+        font-size: 1.4rem;
+      }
+      .legacy-filters {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <div class="circle-image-wrapper">
+        <img class="circle-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2310b981'/%3E%3Cpath fill='white' d='M35 45 L65 45 L55 65 L45 65 Z'/%3E%3C/svg%3E" alt="Runova">
+      </div>
+      <span class="logo-text">Runova</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore Runs</a></li>
+      <li><a href="events.html">Runova Events</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO BANNER REMOVED -->
+
+<section class="page-header">
+  <h1>Explore Runs</h1>
+  <p>Discover marathons, trail runs & city races — your next finish line awaits</p>
+</section>
+
+<!-- NEW: Prominent search + filter chips + legacy filters (city & date) -->
+<div class="search-section">
+  <div class="prominent-search">
+    <input type="text" id="globalSearchInput" placeholder="🔍 Search all events by name, city, or venue..." autocomplete="off">
+  </div>
+  
+  <!-- Filter chips (5K, 10K, 21K, Virtual) visually suggest filtering -->
+  <div class="filter-chips">
+    <span class="chip" data-category="5K">🏃 5K</span>
+    <span class="chip" data-category="10K">🏃‍♀️ 10K</span>
+    <span class="chip" data-category="21K">⚡ 21K</span>
+    <span class="chip" data-category="Virtual">🌐 Virtual</span>
+  </div>
+  
+  <div class="legacy-filters">
+    <div class="legacy-filters-group">
+      <input type="text" id="cityFilter" placeholder="📍 City (Mumbai, Delhi)" autocomplete="off">
+      <input type="date" id="dateFilter">
+      <button id="filterBtn" class="btn-filter">🔍 Apply filters</button>
+      <button id="resetBtn" class="btn-reset">Reset all</button>
+    </div>
+  </div>
+  <div class="results-hint" id="resultsHint">✨ Showing featured events — refine using search or chips</div>
+</div>
+
+<!-- RUNS CONTAINER (dynamic) -->
+<div id="runsContainer" class="runs-container"></div>
+
+<!-- Gradient fade + subtle View More call-to-action -->
+<div class="fade-more-container">
+  <div class="gradient-fade"></div>
+  <a href="#" id="subtleViewMoreLink" class="subtle-view-more">🏁 Scroll for more races →</a>
+</div>
+
+<!-- De-emphasized original "View More Events" button (kept but visually subtle) -->
+<div class="load-more-subtle">
+  <button id="legacyLoadMoreBtn" class="btn-subtle">➕ View More Events (all shown)</button>
+</div>
+
+<!-- GALLERY SECTION (RUNNING MOMENTS) REMOVED -->
+
+<footer>
+  <div class="footer-content">
+    <h3>Runova</h3>
+    <p>All Runs. One Platform.</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="events.html">Events</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p>© 2026 Runova. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // --------------------------------------------------------------
+  // COMPLETE EVENT DATABASE (unchanged, all original data)
+  // --------------------------------------------------------------
+  const allEvents = [
+    { id: 1,
+     name: "Delhi Marathon", 
+     city: "Delhi", 
+     date: "2026-05-03",
+     venue: "Jawaharlal Nehru Stadium, New Delhi",
+     category: "21K, 10K , 5K", 
+     contact: "8587020133", 
+     registerLink: "https://registrations.indiarunning.com/delhi_legends_half_marathon_2026_68631", 
+     image: " India Running Registration DELHI LEGENDS HALF MARATHON 2026.jfif", 
+     fallbackImage: "https://source.unsplash.com/600x400/?running,delhi" },
+      
+    { id: 2, 
+     name: "Guwahati Marathon", 
+     city: "Guwahati", date: "coming soon", 
+     venue: "Sarusujai Stadium", 
+     category: "42K,21K, 10K, 5K", 
+     contact: "info@theguwahatimarathon.com",
+     registerLink: "https://www.theguwahatimarathon.com",
+     image: "Guwahati marathon.jfif", 
+     fallbackImage: "" },
+      
+    { id: 3,
+     name: "Mumbai Half Marathon",
+     city: "Mumbai", 
+     date: "August 30, 2026", 
+     venue: "Mumbai", 
+     category: "42K, 21K, 10K, 5K", 
+     contact: "9206265087",
+     registerLink: "https://mumbaihalfmarathon.com",
+     image: "mumbai-half-marathon.jfif", 
+     fallbackImage: "" },
+      
+    { id: 4,
+     name: "SKF Goa River Marathon", 
+     city: "Goa", date: "2026-12-13", 
+     venue: "Goa", 
+     category: "42K, 32K, 21K, 10K, 5K", 
+     contact: "7020142370", 
+     registerLink: "https://www.skfgoarivermarathon.com/",
+     image: "skf goa river.jfif",
+     fallbackImage: "" },
+      
+    { id: 5,
+     name: "Manali Marathon 2026", 
+     city: "Manali", 
+     date: "30th October to 1st November 2026", 
+     venue: "Manali", 
+     category: "1km, 5km, 10km, Half Marathon, Full Marathon, 100km Ultra",
+     contact: "98161 74164", 
+     registerLink: "https://www.manalimarathon.org",
+     image: "manali.jfif",
+     fallbackImage: "" },
+      
+    { id: 6,
+     name: "Pune International Marathon",
+     city: "Pune",
+     date: "6 December 2026",
+     venue: "Pune",
+     category: "5K, 10K, 21K, 42K",
+     contact: "",
+     registerLink: "https://www.puneinternationalmarathon.com",
+     image: "pune.jfif",
+     fallbackImage: "https://source.unsplash.com/600x400/?bridge,night" },
+      
+    { id: 7, 
+     name: "NMDC Hyderabad Marathon",
+     city: "Hyderabad",
+     date: "29th & 30th Aug 2026", 
+     venue: "Hyderabad",
+     category: "42K, 21K, 10K, 5K",
+     contact: "9985100008", 
+     registerLink: "https://nmdchyderabadmarathon.com",
+     image: "hydrabad.jfif",
+     fallbackImage: "" },
+      
+    { id: 8, 
+     name: "DHUBRI MARATHON", 
+     city: "Dhubri",
+     date: "2027-04-26", 
+     venue: "Boro Bazar, Dhubri",
+     category: "Full Marathon, 21K, 10K, 5K",
+     contact: "9864039629", 
+     registerLink: "https://dhubrimarathon.com/", 
+     image: "dhubri.3333333333334,cg_true",
+     fallbackImage: "" },
+      
+ 
+      { id: 9, 
+      name: "Bengaluru  Ultra 2026",
+      city: "Bengaluru",
+      date: "July 26, 2026", 
+      venue: " Bengaluru",
+       category: "50K, 37.5K, 25K, 12.5K, and 5K ",
+      contact: "9206265087",
+      registerLink: "https://bangaloreultra.com",
+        image: "bangalore-ultra.png",   // ← quote added here
+      fallbackImage: "" },
+      
+       { 
+    id: 10, 
+    name: "Tawang Marathon 2026",
+    city: "Tawang",
+    date: "24 October, 2026", 
+    venue: "Tawang",
+    category: "42K, 21K, 10K and 5K",
+    contact: "9206265087",
+    registerLink: "https://tawangmarathon.com",
+    image: "tawang.jpeg",
+    fallbackImage: ""
+  },
+      
+     
+          
+      
+  ];
+
+  // Global filtering state
+  let activeChips = new Set();    // stores "5K","10K","21K","Virtual"
+  let currentSearch = "";
+  let currentCity = "";
+  let currentDate = "";
+
+  // Helper: Normalize category matching for chips
+  function eventMatchesChip(event, chipCat) {
+    if (chipCat === "Virtual") {
+      return event.category.toLowerCase().includes("virtual") || event.name.toLowerCase().includes("virtual");
+    }
+    const catLower = event.category.toLowerCase();
+    if (chipCat === "5K") return catLower.includes("5k") || catLower.includes("5 km");
+    if (chipCat === "10K") return catLower.includes("10k") || catLower.includes("10 km");
+    if (chipCat === "21K") return catLower.includes("21k") || catLower.includes("half marathon") || catLower.includes("21 km");
+    return false;
+  }
+
+  function filterEvents() {
+    return allEvents.filter(event => {
+      let matchesSearch = true;
+      if (currentSearch.trim() !== "") {
+        const searchLower = currentSearch.toLowerCase();
+        matchesSearch = event.name.toLowerCase().includes(searchLower) ||
+                         event.city.toLowerCase().includes(searchLower) ||
+                         event.venue.toLowerCase().includes(searchLower);
+      }
+      let matchesCity = true;
+      if (currentCity.trim() !== "") {
+        matchesCity = event.city.toLowerCase().includes(currentCity.toLowerCase());
+      }
+      let matchesDate = true;
+      if (currentDate !== "") {
+        matchesDate = event.date === currentDate;
+      }
+      let matchesChip = true;
+      if (activeChips.size > 0) {
+        let chipMatch = false;
+        for (let chip of activeChips) {
+          if (eventMatchesChip(event, chip)) {
+            chipMatch = true;
+            break;
+          }
+        }
+        matchesChip = chipMatch;
+      }
+      return matchesSearch && matchesCity && matchesDate && matchesChip;
+    });
+  }
+
+  function renderEvents() {
+    const container = document.getElementById('runsContainer');
+    if (!container) return;
+    const filtered = filterEvents();
+    const hintSpan = document.getElementById('resultsHint');
+    if (hintSpan) {
+      hintSpan.innerHTML = filtered.length ? `🏅 ${filtered.length} event${filtered.length !== 1 ? 's' : ''} found — lace up!` : "😕 No events match. Try different filters or reset.";
+    }
+    if (filtered.length === 0) {
+      container.innerHTML = `<div style="text-align:center; padding:3rem; background:white; border-radius:2rem;"><span style="font-size:1.2rem;">🏁 No runs match your criteria</span><br><button class="btn-reset" id="inlineResetBtn" style="margin-top:1rem;">Reset filters</button></div>`;
+      const resetInline = document.getElementById('inlineResetBtn');
+      if (resetInline) resetInline.addEventListener('click', () => resetAllFilters());
+      return;
+    }
+    container.innerHTML = '';
+    filtered.forEach(event => {
+      const card = createEnhancedEventCard(event);
+      container.appendChild(card);
+    });
+  }
+
+  function createEnhancedEventCard(event) {
+    const card = document.createElement('div');
+    card.className = 'event-card';
+    const categoryList = event.category.split(',').map(c => c.trim());
+    const distanceHtml = categoryList.map(cat => `<span class="dist-tag">${cat}</span>`).join('');
+    const imgSrc = event.image && event.image.trim() !== "" ? event.image : event.fallbackImage || "https://source.unsplash.com/600x400/?running,race";
+    card.innerHTML = `
+      <div class="event-image">
+        <img src="${imgSrc}" alt="${event.name}" onerror="this.src='https://source.unsplash.com/600x400/?marathon,generic'">
+      </div>
+      <div class="event-details">
+        <h3 class="event-title">${event.name}</h3>
+        <div class="distance-badge">${distanceHtml}</div>
+        <div class="event-meta-grid">
+          <span class="meta-item">📅 <strong>Date:</strong> ${event.date}</span>
+          <span class="meta-item">📍 <strong>City:</strong> ${event.city}</span>
+        </div>
+        <div class="venue-address">🏟️ ${event.venue}</div>
+        <div class="event-contact">📞 ${event.contact || "Contact event organiser"}</div>
+        <a href="${event.registerLink}" class="register-btn" target="_blank" rel="noopener">📝 Register Now →</a>
+      </div>
+    `;
+    return card;
+  }
+
+  function updateFiltersAndRender() {
+    currentSearch = document.getElementById('globalSearchInput')?.value || "";
+    currentCity = document.getElementById('cityFilter')?.value || "";
+    currentDate = document.getElementById('dateFilter')?.value || "";
+    renderEvents();
+  }
+
+  function resetAllFilters() {
+    if (document.getElementById('globalSearchInput')) document.getElementById('globalSearchInput').value = "";
+    if (document.getElementById('cityFilter')) document.getElementById('cityFilter').value = "";
+    if (document.getElementById('dateFilter')) document.getElementById('dateFilter').value = "";
+    document.querySelectorAll('.chip').forEach(chip => chip.classList.remove('active'));
+    activeChips.clear();
+    currentSearch = "";
+    currentCity = "";
+    currentDate = "";
+    renderEvents();
+  }
+
+  function initChips() {
+    const chips = document.querySelectorAll('.chip');
+    chips.forEach(chip => {
+      chip.addEventListener('click', (e) => {
+        const category = chip.getAttribute('data-category');
+        if (activeChips.has(category)) {
+          activeChips.delete(category);
+          chip.classList.remove('active');
+        } else {
+          activeChips.add(category);
+          chip.classList.add('active');
+        }
+        renderEvents();
+      });
+    });
+  }
+
+  function initSubtleScroll() {
+    const subtleLink = document.getElementById('subtleViewMoreLink');
+    if (subtleLink) {
+      subtleLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const container = document.getElementById('runsContainer');
+        if (container) {
+          container.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+      });
+    }
+    const legacyBtn = document.getElementById('legacyLoadMoreBtn');
+    if (legacyBtn) {
+      legacyBtn.addEventListener('click', () => {
+        const hint = document.getElementById('resultsHint');
+        if (hint) hint.style.transition = "0.2s";
+        if (hint) hint.innerHTML = "✨ All events are already displayed — keep exploring!";
+        setTimeout(() => {
+          if (hint && !document.getElementById('resultsHint')?.innerHTML.includes("found")) renderEvents();
+          else if (hint) setTimeout(() => { if (hint) hint.innerHTML = filterEvents().length ? `🏅 ${filterEvents().length} events found` : "No events match"; }, 1800);
+        }, 1500);
+        document.getElementById('runsContainer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  }
+
+  function bindEvents() {
+    const searchInput = document.getElementById('globalSearchInput');
+    if (searchInput) searchInput.addEventListener('input', () => updateFiltersAndRender());
+    const cityInput = document.getElementById('cityFilter');
+    if (cityInput) cityInput.addEventListener('input', () => updateFiltersAndRender());
+    const dateInput = document.getElementById('dateFilter');
+    if (dateInput) dateInput.addEventListener('change', () => updateFiltersAndRender());
+    const filterBtn = document.getElementById('filterBtn');
+    if (filterBtn) filterBtn.addEventListener('click', () => updateFiltersAndRender());
+    const resetBtn = document.getElementById('resetBtn');
+    if (resetBtn) resetBtn.addEventListener('click', () => resetAllFilters());
+  }
+
+  function init() {
+    bindEvents();
+    initChips();
+    initSubtleScroll();
+    currentSearch = "";
+    currentCity = "";
+    currentDate = "";
+    activeChips.clear();
+    renderEvents();
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
