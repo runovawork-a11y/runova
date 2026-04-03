@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Runova – Find & Join Running Events Near You</title>
 
-  <!-- Google Fonts: clean & athletic (existing fonts kept, expanded) -->
+  <!-- Google Fonts: clean & athletic -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -113,11 +113,6 @@
       background: #F05A28;
       color: white;
       transform: translateY(-2px);
-    }
-
-    .btn-small {
-      padding: 0.5rem 1.2rem;
-      font-size: 0.85rem;
     }
 
     /* Navbar */
@@ -278,54 +273,6 @@
     /* Section spacing */
     section {
       margin: 5rem 0;
-    }
-
-    /* Events Cards Grid */
-    .events-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .event-card {
-      background: white;
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-      transition: all 0.25s ease;
-      border: 1px solid #EDF0F4;
-    }
-
-    .event-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 30px -12px rgba(240, 90, 40, 0.12);
-      border-color: #FCE0D2;
-    }
-
-    .event-meta {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.85rem;
-      color: #F05A28;
-      margin: 0.5rem 0;
-      font-weight: 500;
-    }
-
-    .event-meta span {
-      background: #FEF3EC;
-      padding: 0.2rem 0.6rem;
-      border-radius: 30px;
-    }
-
-    .event-desc {
-      font-size: 0.9rem;
-      margin: 0.8rem 0 1rem;
-      color: #5A6E7E;
-    }
-
-    .event-card .btn-small {
-      margin-top: 0.5rem;
     }
 
     /* Community section */
@@ -575,7 +522,6 @@
     @media (max-width: 550px) {
       .kite-image-wrapper { width: 54px; height: 54px; }
       .logo-text { font-size: 1.5rem; }
-      .events-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -608,48 +554,12 @@
         <h1>Find Running Events <span class="accent">Near You</span></h1>
         <p style="font-size: 1.2rem;">From local 5Ks to major marathons — never miss a run again. Join the fastest-growing running community.</p>
         <div class="hero-buttons">
-          <a href="#upcoming-events" class="btn">Explore Events</a>
+          <a href="explore.html" class="btn">Explore Events</a>
           <a href="events.html" class="btn btn-outline">Join Runova</a>
         </div>
       </div>
       <div class="hero-image">
         <img src="hero-runova.jpeg" alt="Runners in community event">
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= UPCOMING EVENTS SECTION (CARDS) ================= -->
-  <div class="container" id="upcoming-events">
-    <h2>🏁 Upcoming Events</h2>
-    <p class="section-subhead">Discover runs happening near you this week. Lace up and join the fun!</p>
-    <div class="events-grid">
-      <!-- Event Card 1 -->
-      <div class="event-card">
-        <h3>Sunset Beach 5K</h3>
-        <div class="event-meta"><span>📍 Marina Beach, Chennai</span><span>📅 Apr 12, 6:00 PM</span></div>
-        <p class="event-desc">Breathtaking sunset run along the coastline. Open to all paces.</p>
-        <a href="#" class="btn btn-small">Join Event →</a>
-      </div>
-      <!-- Event Card 2 -->
-      <div class="event-card">
-        <h3>Runova Night Trail</h3>
-        <div class="event-meta"><span>📍 Sanjay Gandhi NP, Mumbai</span><span>📅 Apr 15, 7:30 PM</span></div>
-        <p class="event-desc">Night headlamp run through scenic trails. Post-run chai meetup.</p>
-        <a href="#" class="btn btn-small">Join Event →</a>
-      </div>
-      <!-- Event Card 3 -->
-      <div class="event-card">
-        <h3>Sunday Long Run</h3>
-        <div class="event-meta"><span>📍 Cubbon Park, Bengaluru</span><span>📅 Apr 14, 6:30 AM</span></div>
-        <p class="event-desc">Weekly long run, 10K/16K options. Pacers available.</p>
-        <a href="#" class="btn btn-small">Join Event →</a>
-      </div>
-      <!-- Event Card 4 -->
-      <div class="event-card">
-        <h3>Delhi Half Marathon Prep</h3>
-        <div class="event-meta"><span>📍 Nehru Park, Delhi</span><span>📅 Apr 18, 5:30 AM</span></div>
-        <p class="event-desc">Group interval session + expert tips for race season.</p>
-        <a href="#" class="btn btn-small">Join Event →</a>
       </div>
     </div>
   </div>
@@ -739,8 +649,8 @@
       <h2>Ready to Run?</h2>
       <p>Join thousands of runners discovering local events every day. Your next PR starts here.</p>
       <div>
-        <a href="#upcoming-events" class="btn">Explore Events</a>
-        <a href="explore.html" class="btn btn-outline-light">Join the Community</a>
+        <a href="explore.html" class="btn">Explore Events</a>
+        <a href="events.html" class="btn btn-outline-light">Join Runova</a>
       </div>
     </div>
   </div>
