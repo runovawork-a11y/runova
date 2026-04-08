@@ -251,9 +251,10 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
+      position: relative;
     }
 
-    /* ---------- REDESIGNED LOGO (running icon) ---------- */
+    /* Logo */
     .logo-fresh {
       display: flex;
       align-items: center;
@@ -312,7 +313,7 @@
       background-position: 100% 0;
     }
 
-    /* ========== QUICK LINKS - MODERN PILL DESIGN ========== */
+    /* Quick links (nav pills) */
     .nav-links {
       display: flex;
       gap: 0.5rem;
@@ -351,7 +352,6 @@
       color: #F05A28;
     }
 
-    /* active state simulation for current page (home) */
     .nav-links .quick-link-item.active {
       background: #F05A28;
       color: white;
@@ -361,6 +361,86 @@
 
     .nav-links .quick-link-item.active i {
       color: white;
+    }
+
+    /* ========== THREE DOTS MENU (UPPER RIGHT) ========== */
+    .dots-menu-container {
+      position: relative;
+    }
+
+    .dots-icon {
+      background: rgba(240, 90, 40, 0.08);
+      border-radius: 40px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid rgba(240, 90, 40, 0.2);
+    }
+
+    .dots-icon i {
+      font-size: 1.5rem;
+      color: #F05A28;
+      transition: transform 0.2s;
+    }
+
+    .dots-icon:hover {
+      background: rgba(240, 90, 40, 0.15);
+      transform: scale(1.02);
+    }
+
+    .dots-dropdown {
+      position: absolute;
+      top: 55px;
+      right: 0;
+      background: white;
+      border-radius: 1.2rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
+      width: 220px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.2s ease;
+      z-index: 200;
+      border: 1px solid #F0E9E4;
+      overflow: hidden;
+    }
+
+    .dots-dropdown.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dots-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.9rem 1.2rem;
+      text-decoration: none;
+      color: #2C3E4E;
+      font-weight: 500;
+      transition: 0.2s;
+      border-bottom: 1px solid #F5F0EB;
+    }
+
+    .dots-dropdown a:last-child {
+      border-bottom: none;
+    }
+
+    .dots-dropdown a i {
+      width: 24px;
+      color: #F05A28;
+      font-size: 1rem;
+    }
+
+    .dots-dropdown a:hover {
+      background: #FEF7F2;
+      color: #F05A28;
+      padding-left: 1.5rem;
     }
 
     /* Hero section */
@@ -598,7 +678,7 @@
       color: #F05A28;
     }
 
-    /* Footer redesigned quick links */
+    /* Footer */
     footer {
       background: #F8F9FB;
       padding: 2.5rem 1.5rem 2rem;
@@ -669,6 +749,7 @@
       opacity: 0.7;
     }
 
+    /* Responsive */
     @media (max-width: 850px) {
       h1 { font-size: 2.6rem; }
       h2 { font-size: 2rem; }
@@ -676,13 +757,22 @@
       .hero-buttons { justify-content: center; }
       .community-wrapper { flex-direction: column; text-align: center; }
       .bullet-list li { justify-content: center; }
-      .navbar { flex-direction: column; align-items: flex-start; }
-      .nav-links { gap: 0.4rem; justify-content: flex-start; }
+      .navbar { flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
+      .nav-links { order: 3; width: 100%; justify-content: center; margin-top: 0.5rem; }
+      .dots-menu-container { order: 2; }
+      .logo-fresh { order: 1; }
       .quick-link-item { padding: 0.4rem 1rem; font-size: 0.85rem; }
       .logo-text-new { font-size: 1.6rem; }
       .logo-icon { width: 44px; height: 44px; }
       .logo-icon i { font-size: 24px; }
       .intro-runova { font-size: 3rem; }
+    }
+
+    @media (max-width: 550px) {
+      .nav-links { gap: 0.3rem; }
+      .quick-link-item { padding: 0.3rem 0.8rem; font-size: 0.8rem; }
+      .dots-icon { width: 38px; height: 38px; }
+      .dots-icon i { font-size: 1.3rem; }
     }
   </style>
 </head>
@@ -707,7 +797,23 @@
         </div>
         <span class="logo-text-new">RUNOVA</span>
       </a>
-      <!-- QUICK LINKS (modern pill design) -->
+
+      <!-- THREE DOTS MENU (upper right) -->
+      <div class="dots-menu-container">
+        <div class="dots-icon" id="dotsIcon">
+          <i class="fas fa-ellipsis-v"></i>
+        </div>
+        <div class="dots-dropdown" id="dotsDropdown">
+          <a href="index.html"><i class="fas fa-home"></i> Home</a>
+          <a href="explore.html"><i class="fas fa-map-marked-alt"></i> Explore Runs</a>
+          <a href="events.html"><i class="fas fa-calendar-check"></i> Runova Events</a>
+          <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+          <a href="#" id="shareLink"><i class="fas fa-share-alt"></i> Share Runova</a>
+          <a href="#" id="helpLink"><i class="fas fa-question-circle"></i> Help & Support</a>
+        </div>
+      </div>
+
+      <!-- Regular nav pills (quick links) -->
       <ul class="nav-links">
         <li><a href="index.html" class="quick-link-item active"><i class="fas fa-home"></i> Home</a></li>
         <li><a href="explore.html" class="quick-link-item"><i class="fas fa-map-marked-alt"></i> Explore Runs</a></li>
@@ -847,7 +953,7 @@
 </div>
 
 <script>
-  // Intro overlay hides after 2.1s
+  // Intro overlay
   (function() {
     const overlay = document.getElementById('introOverlay');
     if (overlay) {
@@ -859,6 +965,42 @@
       }, 2100);
     }
   })();
+
+  // Three dots dropdown toggle
+  const dotsIcon = document.getElementById('dotsIcon');
+  const dotsDropdown = document.getElementById('dotsDropdown');
+
+  if (dotsIcon && dotsDropdown) {
+    dotsIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dotsDropdown.classList.toggle('show');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!dotsIcon.contains(e.target) && !dotsDropdown.contains(e.target)) {
+        dotsDropdown.classList.remove('show');
+      }
+    });
+
+    // Example actions for demo links
+    const shareLink = document.getElementById('shareLink');
+    const helpLink = document.getElementById('helpLink');
+    if (shareLink) {
+      shareLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('🌐 Share Runova with your running crew! (Copy link: https://runova.example)');
+        dotsDropdown.classList.remove('show');
+      });
+    }
+    if (helpLink) {
+      helpLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('📞 Need help? Reach us at support@runova.com or visit our Help Center.');
+        dotsDropdown.classList.remove('show');
+      });
+    }
+  }
 </script>
 </body>
 </html>
