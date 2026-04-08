@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Runova – Run further, together. Discover local running events, marathons, and a vibrant community.">
-  <title>Runova – Run Further, Run Together</title>
+  <meta name="description" content="Runova – Run further, together. Discover local running events, marathons, and a vibrant community in India.">
+  <title>Runova – Run Further, Run Together | India Running Events</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
       overflow-x: hidden;
     }
 
-    /* ---------- INTRO OVERLAY (FIRST TIME VISIT) ---------- */
+    /* ---------- INTRO OVERLAY ---------- */
     .intro-overlay {
       position: fixed;
       top: 0;
@@ -44,22 +44,12 @@
       transition: opacity 0.6s ease, visibility 0.6s ease;
       pointer-events: none;
     }
-
-    .intro-overlay.active {
-      pointer-events: all;
-    }
-
-    .intro-content {
-      text-align: center;
-      transform: translateY(0);
-      animation: introFloat 1.2s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-    }
-
+    .intro-overlay.active { pointer-events: all; }
+    .intro-content { text-align: center; animation: introFloat 1.2s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
     .intro-runova {
       font-family: 'Outfit', sans-serif;
       font-size: 4.8rem;
       font-weight: 900;
-      letter-spacing: -0.02em;
       background: linear-gradient(135deg, #F05A28, #FF8A5C, #F05A28, #C73E0E);
       background-size: 300% auto;
       -webkit-background-clip: text;
@@ -68,711 +58,124 @@
       animation: introShine 1.8s ease infinite, pulseScale 0.9s ease-out;
       margin-bottom: 0.5rem;
     }
+    .intro-tagline { font-size: 1.2rem; color: #F05A28; font-weight: 500; letter-spacing: 2px; opacity: 0; animation: fadeUp 0.8s 0.5s forwards; }
+    .intro-swoosh { width: 80px; height: 3px; background: #F05A28; margin: 1rem auto 0; border-radius: 4px; transform: scaleX(0); animation: expandLine 0.8s 0.7s forwards; }
+    @keyframes introFloat { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes introShine { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    @keyframes pulseScale { 0% { transform: scale(0.95); opacity: 0; } 80% { transform: scale(1.02); } 100% { transform: scale(1); opacity: 1; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes expandLine { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    .intro-overlay.hide-intro { opacity: 0; visibility: hidden; pointer-events: none; }
+    .main-site { opacity: 0; animation: fadeMainIn 0.7s 0.3s forwards; }
+    @keyframes fadeMainIn { to { opacity: 1; } }
 
-    .intro-tagline {
-      font-size: 1.2rem;
-      color: #F05A28;
-      font-weight: 500;
-      letter-spacing: 2px;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.5s forwards;
-    }
-
-    .intro-swoosh {
-      width: 80px;
-      height: 3px;
-      background: #F05A28;
-      margin: 1rem auto 0;
-      border-radius: 4px;
-      transform: scaleX(0);
-      animation: expandLine 0.8s 0.7s forwards;
-    }
-
-    @keyframes introFloat {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes introShine {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes pulseScale {
-      0% { transform: scale(0.95); opacity: 0; }
-      80% { transform: scale(1.02); }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes expandLine {
-      from { transform: scaleX(0); }
-      to { transform: scaleX(1); }
-    }
-
-    .intro-overlay.hide-intro {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .main-site {
-      opacity: 0;
-      animation: fadeMainIn 0.7s 0.3s forwards;
-    }
-
-    @keyframes fadeMainIn {
-      to { opacity: 1; }
-    }
-
-    /* ---------- GLOBAL STYLES ---------- */
-    h1, h2, h3, .logo-text-new, .nav-links a, .btn, .quick-link-item {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-
-    h1 {
-      font-size: 3.6rem;
-      font-weight: 800;
-      line-height: 1.2;
-      color: #1E2F3A;
-      margin-bottom: 1.2rem;
-    }
-
-    h1 .accent {
-      color: #F05A28;
-      position: relative;
-      display: inline-block;
-    }
-
-    h1 .accent::after {
-      content: '';
-      position: absolute;
-      bottom: 6px;
-      left: 0;
-      width: 100%;
-      height: 8px;
-      background: rgba(240, 90, 40, 0.2);
-      border-radius: 20px;
-      z-index: -1;
-    }
-
-    h2 {
-      font-size: 2.3rem;
-      font-weight: 700;
-      color: #1E2F3A;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-subhead {
-      color: #5A6E7E;
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-      max-width: 640px;
-    }
-
-    p {
-      color: #4A5B6B;
-    }
-
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 1.8rem;
-    }
+    /* GLOBAL */
+    h1, h2, h3, .logo-text-new, .btn, .quick-link-item { font-family: 'Outfit', sans-serif; font-weight: 600; letter-spacing: -0.02em; }
+    h1 { font-size: 3.6rem; font-weight: 800; line-height: 1.2; color: #1E2F3A; margin-bottom: 1.2rem; }
+    h1 .accent { color: #F05A28; position: relative; display: inline-block; }
+    h1 .accent::after { content: ''; position: absolute; bottom: 6px; left: 0; width: 100%; height: 8px; background: rgba(240, 90, 40, 0.2); border-radius: 20px; z-index: -1; }
+    h2 { font-size: 2.3rem; font-weight: 700; color: #1E2F3A; margin-bottom: 0.75rem; }
+    .section-subhead { color: #5A6E7E; font-size: 1.1rem; margin-bottom: 2rem; max-width: 640px; }
+    p { color: #4A5B6B; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.8rem; }
 
     /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #F05A28;
-      color: white;
-      padding: 0.85rem 2.2rem;
-      border-radius: 60px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      box-shadow: 0 6px 14px rgba(240, 90, 40, 0.2);
-      gap: 8px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn i {
-      transition: transform 0.2s;
-    }
-
-    .btn:hover {
-      background: #D94A1A;
-      transform: translateY(-3px);
-      box-shadow: 0 14px 26px rgba(240, 90, 40, 0.3);
-    }
-
-    .btn:hover i {
-      transform: translateX(4px);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: #F05A28;
-      border: 2px solid #F05A28;
-      box-shadow: none;
-    }
-
-    .btn-outline:hover {
-      background: #F05A28;
-      color: white;
-    }
+    .btn { display: inline-flex; align-items: center; justify-content: center; background: #F05A28; color: white; padding: 0.85rem 2.2rem; border-radius: 60px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s; box-shadow: 0 6px 14px rgba(240, 90, 40, 0.2); gap: 8px; border: none; cursor: pointer; }
+    .btn:hover { background: #D94A1A; transform: translateY(-3px); box-shadow: 0 14px 26px rgba(240, 90, 40, 0.3); }
+    .btn-outline { background: transparent; color: #F05A28; border: 2px solid #F05A28; box-shadow: none; }
+    .btn-outline:hover { background: #F05A28; color: white; }
 
     /* Header */
-    header {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(233, 237, 242, 0.8);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .navbar {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0.7rem 1.8rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      position: relative;
-    }
+    header { background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(233, 237, 242, 0.8); position: sticky; top: 0; z-index: 100; }
+    .navbar { max-width: 1280px; margin: 0 auto; padding: 0.7rem 1.8rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
 
     /* Logo */
-    .logo-fresh {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      position: relative;
-    }
+    .logo-fresh { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon { width: 52px; height: 52px; background: linear-gradient(145deg, #F05A28, #E34E1A); border-radius: 18px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 18px rgba(240, 90, 40, 0.25); transition: all 0.25s; animation: subtleGlow 2.4s infinite alternate; }
+    .logo-icon i { font-size: 28px; color: white; }
+    .logo-fresh:hover .logo-icon { transform: scale(1.02); }
+    @keyframes subtleGlow { 0% { box-shadow: 0 6px 12px rgba(240, 90, 40, 0.2); } 100% { box-shadow: 0 12px 22px rgba(240, 90, 40, 0.35); } }
+    .logo-text-new { font-size: 1.95rem; font-weight: 800; background: linear-gradient(125deg, #1E2F3A 20%, #F05A28 70%, #FF8A5C 100%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: -0.5px; transition: 0.2s; }
+    .logo-fresh:hover .logo-text-new { background-position: 100% 0; }
 
-    .logo-icon {
-      width: 52px;
-      height: 52px;
-      background: linear-gradient(145deg, #F05A28, #E34E1A);
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 10px 18px rgba(240, 90, 40, 0.25);
-      transition: all 0.25s;
-      animation: subtleGlow 2.4s infinite alternate;
-    }
+    /* Three dots menu */
+    .dots-menu-container { position: relative; }
+    .dots-icon { background: rgba(240, 90, 40, 0.08); border-radius: 40px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; border: 1px solid rgba(240, 90, 40, 0.2); }
+    .dots-icon i { font-size: 1.5rem; color: #F05A28; }
+    .dots-icon:hover { background: rgba(240, 90, 40, 0.15); transform: scale(1.02); }
+    .dots-dropdown { position: absolute; top: 55px; right: 0; background: white; border-radius: 1.2rem; box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2); width: 250px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.2s ease; z-index: 200; border: 1px solid #F0E9E4; overflow: hidden; }
+    .dots-dropdown.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dots-dropdown a { display: flex; align-items: center; gap: 12px; padding: 0.9rem 1.2rem; text-decoration: none; color: #2C3E4E; font-weight: 500; transition: 0.2s; border-bottom: 1px solid #F5F0EB; }
+    .dots-dropdown a:last-child { border-bottom: none; }
+    .dots-dropdown a i { width: 24px; color: #F05A28; font-size: 1rem; }
+    .dots-dropdown a:hover { background: #FEF7F2; color: #F05A28; padding-left: 1.5rem; }
 
-    .logo-icon i {
-      font-size: 28px;
-      color: white;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-      transition: transform 0.2s;
-    }
+    /* Countdown Section */
+    .countdown-section { background: linear-gradient(135deg, #1E2F3A 0%, #2C3E4E 100%); border-radius: 2rem; padding: 2.5rem; text-align: center; color: white; margin: 3rem 0; box-shadow: 0 20px 30px -10px rgba(0,0,0,0.2); }
+    .countdown-section h2 { color: white; margin-bottom: 0.5rem; }
+    .countdown-section p { color: rgba(255,255,240,0.85); margin-bottom: 1.5rem; }
+    .countdown-timer { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; }
+    .time-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); padding: 1.2rem 1.8rem; border-radius: 1.5rem; min-width: 100px; text-align: center; border: 1px solid rgba(255,255,255,0.2); }
+    .time-number { font-size: 2.6rem; font-weight: 800; font-family: 'Outfit', monospace; line-height: 1; }
+    .time-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.8; }
 
-    .logo-fresh:hover .logo-icon {
-      transform: scale(1.02);
-      background: linear-gradient(145deg, #E34E1A, #F05A28);
-    }
+    /* Events India Section */
+    .events-india { background: #FFFFFF; border-radius: 2rem; padding: 2rem; margin: 3rem 0; box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04); border: 1px solid #F0E9E4; }
+    .event-card { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; background: #FEFAF7; border-radius: 1.5rem; padding: 1.2rem 1.8rem; margin-bottom: 1rem; transition: 0.2s; border-left: 5px solid #F05A28; }
+    .event-card:hover { transform: translateX(6px); background: white; box-shadow: 0 6px 14px rgba(0,0,0,0.05); }
+    .event-info { flex: 3; }
+    .event-name { font-weight: 800; font-size: 1.2rem; color: #1E2F3A; }
+    .event-details { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 0.85rem; margin-top: 0.4rem; color: #5A6E7E; }
+    .event-details i { margin-right: 4px; color: #F05A28; }
+    .event-register a { background: #F05A28; color: white; padding: 0.5rem 1.2rem; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+    .event-register a:hover { background: #D94A1A; transform: translateY(-2px); }
 
-    .logo-fresh:hover .logo-icon i {
-      transform: translateX(2px) scale(1.02);
-    }
-
-    @keyframes subtleGlow {
-      0% { box-shadow: 0 6px 12px rgba(240, 90, 40, 0.2); }
-      100% { box-shadow: 0 12px 22px rgba(240, 90, 40, 0.35); }
-    }
-
-    .logo-text-new {
-      font-size: 1.95rem;
-      font-weight: 800;
-      background: linear-gradient(125deg, #1E2F3A 20%, #F05A28 70%, #FF8A5C 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: -0.5px;
-      transition: 0.2s;
-    }
-
-    .logo-fresh:hover .logo-text-new {
-      background-position: 100% 0;
-    }
-
-    /* Quick links (nav pills) */
-    .nav-links {
-      display: flex;
-      gap: 0.5rem;
-      list-style: none;
-      flex-wrap: wrap;
-    }
-
-    .quick-link-item {
-      display: inline-block;
-      text-decoration: none;
-      padding: 0.6rem 1.4rem;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.25s ease;
-      background: transparent;
-      color: #2C3E4E;
-      border: 1px solid transparent;
-    }
-
-    .quick-link-item i {
-      margin-right: 8px;
-      font-size: 0.9rem;
-      transition: transform 0.2s;
-    }
-
-    .quick-link-item:hover {
-      background: rgba(240, 90, 40, 0.08);
-      color: #F05A28;
-      border-color: rgba(240, 90, 40, 0.3);
-      transform: translateY(-2px);
-    }
-
-    .quick-link-item:hover i {
-      transform: translateX(3px);
-      color: #F05A28;
-    }
-
-    .nav-links .quick-link-item.active {
-      background: #F05A28;
-      color: white;
-      border-color: #F05A28;
-      box-shadow: 0 4px 10px rgba(240, 90, 40, 0.2);
-    }
-
-    .nav-links .quick-link-item.active i {
-      color: white;
-    }
-
-    /* ========== THREE DOTS MENU (UPPER RIGHT) ========== */
-    .dots-menu-container {
-      position: relative;
-    }
-
-    .dots-icon {
-      background: rgba(240, 90, 40, 0.08);
-      border-radius: 40px;
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: 1px solid rgba(240, 90, 40, 0.2);
-    }
-
-    .dots-icon i {
-      font-size: 1.5rem;
-      color: #F05A28;
-      transition: transform 0.2s;
-    }
-
-    .dots-icon:hover {
-      background: rgba(240, 90, 40, 0.15);
-      transform: scale(1.02);
-    }
-
-    .dots-dropdown {
-      position: absolute;
-      top: 55px;
-      right: 0;
-      background: white;
-      border-radius: 1.2rem;
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
-      width: 220px;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all 0.2s ease;
-      z-index: 200;
-      border: 1px solid #F0E9E4;
-      overflow: hidden;
-    }
-
-    .dots-dropdown.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .dots-dropdown a {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 0.9rem 1.2rem;
-      text-decoration: none;
-      color: #2C3E4E;
-      font-weight: 500;
-      transition: 0.2s;
-      border-bottom: 1px solid #F5F0EB;
-    }
-
-    .dots-dropdown a:last-child {
-      border-bottom: none;
-    }
-
-    .dots-dropdown a i {
-      width: 24px;
-      color: #F05A28;
-      font-size: 1rem;
-    }
-
-    .dots-dropdown a:hover {
-      background: #FEF7F2;
-      color: #F05A28;
-      padding-left: 1.5rem;
-    }
-
-    /* Hero section */
-    .hero {
-      margin: 3rem auto 4rem;
-      padding: 0 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-text {
-      flex: 1.2;
-    }
-
-    .hero-image {
-      flex: 1;
-      border-radius: 32px;
-      overflow: hidden;
-      box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.18);
-      transition: all 0.3s;
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.5s;
-    }
-
-    .hero-image:hover img {
-      transform: scale(1.02);
-    }
-
-    /* Community */
-    .community-wrapper {
-      background: #FFFFFF;
-      border-radius: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2.5rem;
-      align-items: center;
-      padding: 2.5rem;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04);
-      border: 1px solid #F0E9E4;
-    }
-
-    .community-text {
-      flex: 1;
-    }
-
-    .community-image {
-      flex: 1;
-      border-radius: 1.5rem;
-      overflow: hidden;
-    }
-
-    .community-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .bullet-list {
-      list-style: none;
-      margin: 1.5rem 0;
-    }
-
-    .bullet-list li {
-      margin-bottom: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 500;
-    }
-
-    .bullet-list li::before {
-      content: "🏃‍♂️";
-      font-size: 1.3rem;
-    }
-
-    /* Event cards */
-    .types-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      margin: 2rem 0;
-    }
-
-    .type-card {
-      background: white;
-      border-radius: 2rem;
-      padding: 2rem 1.6rem;
-      text-align: center;
-      transition: all 0.3s;
-      border: 1px solid #F2EBE6;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-    }
-
-    .type-card:hover {
-      transform: translateY(-8px);
-      border-color: #FCDBCE;
-      box-shadow: 0 20px 30px -12px rgba(240, 90, 40, 0.15);
-    }
-
-    .type-icon {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-    }
-
-    /* Location card */
-    .location-card {
-      background: linear-gradient(125deg, #FFFFFF 0%, #FEF7F2 100%);
-      border-radius: 2rem;
-      padding: 2.4rem;
-      text-align: center;
-      border: 1px solid #FFE4D8;
-    }
-
-    .map-mock {
-      background: #F2F5F9;
-      border-radius: 1.8rem;
-      padding: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .pin-wave {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .pin {
-      background: #F05A28;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.3rem;
-      animation: softPop 1.2s infinite alternate;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    @keyframes softPop {
-      0% { transform: scale(0.95); background: #F05A28; }
-      100% { transform: scale(1.1); background: #FF7946; }
-    }
-
-    .event-nearby {
-      background: white;
-      border-radius: 1.5rem;
-      padding: 0.8rem 1rem;
-      margin: 0.6rem 0;
-      display: flex;
-      justify-content: space-between;
-      font-weight: 500;
-    }
-
-    /* Gallery */
-    .visual-gallery {
-      background: #FCF9F5;
-      border-radius: 2rem;
-      padding: 2.2rem;
-      text-align: center;
-    }
-
-    .gallery-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.8rem;
-      margin-top: 2rem;
-    }
-
-    .gallery-item {
-      flex: 1;
-      min-width: 180px;
-      background: white;
-      border-radius: 1.5rem;
-      padding: 1rem;
-      transition: all 0.3s;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.04);
-    }
-
-    .gallery-item:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 28px rgba(240, 90, 40, 0.12);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 1rem;
-      margin-bottom: 0.8rem;
-    }
-
-    /* CTA */
-    .cta-section {
-      background: linear-gradient(115deg, #F05A28, #E34E1A);
-      border-radius: 2rem;
-      padding: 3rem 2rem;
-      text-align: center;
-      margin: 4rem auto;
-      box-shadow: 0 20px 30px -10px rgba(240, 90, 40, 0.4);
-    }
-
-    .cta-section h2 {
-      color: white;
-    }
-
-    .cta-section p {
-      color: rgba(255,255,240,0.95);
-      margin-bottom: 1.8rem;
-    }
-
-    .cta-section .btn-light {
-      background: white;
-      color: #F05A28;
-    }
-
-    .cta-section .btn-outline-light {
-      background: transparent;
-      border: 2px solid white;
-      color: white;
-    }
-
-    .cta-section .btn-outline-light:hover {
-      background: white;
-      color: #F05A28;
-    }
+    /* Other existing sections (preserved) */
+    .hero { margin: 3rem auto 4rem; padding: 0 1.5rem; display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
+    .hero-text { flex: 1.2; }
+    .hero-image { flex: 1; border-radius: 32px; overflow: hidden; box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.18); }
+    .hero-image img { width: 100%; height: auto; display: block; transition: transform 0.5s; }
+    .hero-image:hover img { transform: scale(1.02); }
+    .community-wrapper { background: #FFFFFF; border-radius: 2rem; display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: center; padding: 2.5rem; box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04); border: 1px solid #F0E9E4; margin: 2rem 0; }
+    .bullet-list { list-style: none; margin: 1.5rem 0; }
+    .bullet-list li { margin-bottom: 0.9rem; display: flex; align-items: center; gap: 12px; font-weight: 500; }
+    .bullet-list li::before { content: "🏃‍♂️"; font-size: 1.3rem; }
+    .types-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin: 2rem 0; }
+    .type-card { background: white; border-radius: 2rem; padding: 2rem 1.6rem; text-align: center; transition: all 0.3s; border: 1px solid #F2EBE6; }
+    .type-card:hover { transform: translateY(-8px); border-color: #FCDBCE; box-shadow: 0 20px 30px -12px rgba(240, 90, 40, 0.15); }
+    .location-card { background: linear-gradient(125deg, #FFFFFF 0%, #FEF7F2 100%); border-radius: 2rem; padding: 2.4rem; text-align: center; border: 1px solid #FFE4D8; margin: 2rem 0; }
+    .map-mock { background: #F2F5F9; border-radius: 1.8rem; padding: 1.5rem; margin-top: 1.5rem; }
+    .pin-wave { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
+    .pin { background: #F05A28; width: 44px; height: 44px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem; animation: softPop 1.2s infinite alternate; }
+    @keyframes softPop { 0% { transform: scale(0.95); } 100% { transform: scale(1.1); background: #FF7946; } }
+    .event-nearby { background: white; border-radius: 1.5rem; padding: 0.8rem 1rem; margin: 0.6rem 0; display: flex; justify-content: space-between; font-weight: 500; }
+    .visual-gallery { background: #FCF9F5; border-radius: 2rem; padding: 2.2rem; text-align: center; margin: 2rem 0; }
+    .gallery-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.8rem; margin-top: 2rem; }
+    .gallery-item { flex: 1; min-width: 180px; background: white; border-radius: 1.5rem; padding: 1rem; transition: all 0.3s; }
+    .gallery-item img { width: 100%; height: 150px; object-fit: cover; border-radius: 1rem; margin-bottom: 0.8rem; }
+    .cta-section { background: linear-gradient(115deg, #F05A28, #E34E1A); border-radius: 2rem; padding: 3rem 2rem; text-align: center; margin: 4rem auto; box-shadow: 0 20px 30px -10px rgba(240, 90, 40, 0.4); }
+    .cta-section h2, .cta-section p { color: white; }
+    .cta-section .btn-light { background: white; color: #F05A28; }
+    .cta-section .btn-outline-light { background: transparent; border: 2px solid white; color: white; }
+    .cta-section .btn-outline-light:hover { background: white; color: #F05A28; }
 
     /* Footer */
-    footer {
-      background: #F8F9FB;
-      padding: 2.5rem 1.5rem 2rem;
-      margin-top: 2rem;
-      border-top: 1px solid #E9EDF2;
-    }
+    footer { background: #F8F9FB; padding: 2.5rem 1.5rem 2rem; margin-top: 2rem; border-top: 1px solid #E9EDF2; }
+    .footer-content { max-width: 1280px; margin: 0 auto; text-align: center; }
+    .footer-content h3 { font-size: 1.9rem; font-weight: 800; background: linear-gradient(135deg, #F05A28, #C73E0E); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .footer-links { display: flex; justify-content: center; gap: 1.2rem; margin: 1.5rem 0; flex-wrap: wrap; }
+    .footer-quick-link { display: inline-flex; align-items: center; gap: 8px; background: white; padding: 0.5rem 1.4rem; border-radius: 60px; text-decoration: none; font-weight: 500; color: #2C3E4E; transition: all 0.2s; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03); border: 1px solid #E9EDF2; }
+    .footer-quick-link i { color: #F05A28; }
+    .footer-quick-link:hover { background: #F05A28; color: white; border-color: #F05A28; transform: translateY(-2px); }
+    .footer-quick-link:hover i { color: white; }
 
-    .footer-content {
-      max-width: 1280px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .footer-content h3 {
-      font-size: 1.9rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #F05A28, #C73E0E);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.2rem;
-      margin: 1.5rem 0;
-      flex-wrap: wrap;
-    }
-
-    .footer-quick-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: white;
-      padding: 0.5rem 1.4rem;
-      border-radius: 60px;
-      text-decoration: none;
-      font-weight: 500;
-      color: #2C3E4E;
-      transition: all 0.2s;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-      border: 1px solid #E9EDF2;
-    }
-
-    .footer-quick-link i {
-      font-size: 0.9rem;
-      color: #F05A28;
-      transition: transform 0.2s;
-    }
-
-    .footer-quick-link:hover {
-      background: #F05A28;
-      color: white;
-      border-color: #F05A28;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(240, 90, 40, 0.15);
-    }
-
-    .footer-quick-link:hover i {
-      color: white;
-      transform: translateX(3px);
-    }
-
-    .copyright {
-      font-size: 0.8rem;
-      margin-top: 1.2rem;
-      opacity: 0.7;
-    }
-
-    /* Responsive */
     @media (max-width: 850px) {
       h1 { font-size: 2.6rem; }
-      h2 { font-size: 2rem; }
       .hero { flex-direction: column-reverse; text-align: center; }
-      .hero-buttons { justify-content: center; }
-      .community-wrapper { flex-direction: column; text-align: center; }
-      .bullet-list li { justify-content: center; }
-      .navbar { flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
-      .nav-links { order: 3; width: 100%; justify-content: center; margin-top: 0.5rem; }
-      .dots-menu-container { order: 2; }
-      .logo-fresh { order: 1; }
-      .quick-link-item { padding: 0.4rem 1rem; font-size: 0.85rem; }
-      .logo-text-new { font-size: 1.6rem; }
-      .logo-icon { width: 44px; height: 44px; }
-      .logo-icon i { font-size: 24px; }
-      .intro-runova { font-size: 3rem; }
-    }
-
-    @media (max-width: 550px) {
-      .nav-links { gap: 0.3rem; }
-      .quick-link-item { padding: 0.3rem 0.8rem; font-size: 0.8rem; }
-      .dots-icon { width: 38px; height: 38px; }
-      .dots-icon i { font-size: 1.3rem; }
+      .navbar { flex-direction: row; justify-content: space-between; }
+      .dots-icon { width: 40px; height: 40px; }
+      .time-card { padding: 0.8rem 1rem; min-width: 70px; }
+      .time-number { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -790,36 +193,23 @@
 <div class="main-site">
   <header>
     <nav class="navbar">
-      <!-- Logo -->
       <a href="index.html" class="logo-fresh">
-        <div class="logo-icon">
-          <i class="fas fa-person-running"></i>
-        </div>
+        <div class="logo-icon"><i class="fas fa-person-running"></i></div>
         <span class="logo-text-new">RUNOVA</span>
       </a>
-
-      <!-- THREE DOTS MENU (upper right) -->
+      <!-- Three dots menu (contains all navigation links) -->
       <div class="dots-menu-container">
-        <div class="dots-icon" id="dotsIcon">
-          <i class="fas fa-ellipsis-v"></i>
-        </div>
+        <div class="dots-icon" id="dotsIcon"><i class="fas fa-ellipsis-v"></i></div>
         <div class="dots-dropdown" id="dotsDropdown">
           <a href="index.html"><i class="fas fa-home"></i> Home</a>
           <a href="explore.html"><i class="fas fa-map-marked-alt"></i> Explore Runs</a>
           <a href="events.html"><i class="fas fa-calendar-check"></i> Runova Events</a>
           <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+          <a href="#" id="privacyLink"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+          <a href="#" id="termsLink"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
           <a href="#" id="shareLink"><i class="fas fa-share-alt"></i> Share Runova</a>
-          <a href="#" id="helpLink"><i class="fas fa-question-circle"></i> Help & Support</a>
         </div>
       </div>
-
-      <!-- Regular nav pills (quick links) -->
-      <ul class="nav-links">
-        <li><a href="index.html" class="quick-link-item active"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="explore.html" class="quick-link-item"><i class="fas fa-map-marked-alt"></i> Explore Runs</a></li>
-        <li><a href="events.html" class="quick-link-item"><i class="fas fa-calendar-check"></i> Runova Events</a></li>
-        <li><a href="contact.html" class="quick-link-item"><i class="fas fa-envelope"></i> Contact</a></li>
-      </ul>
     </nav>
   </header>
 
@@ -827,34 +217,86 @@
     <div class="container">
       <div class="hero">
         <div class="hero-text">
-          <h1>Find Running Events <span class="accent">Near You</span></h1>
+          <h1>Find Running Events <span class="accent">Near You in India</span></h1>
           <p style="font-size: 1.2rem;">From local 5Ks to major marathons — never miss a run again. Join the fastest-growing running community.</p>
           <div class="hero-buttons" style="display: flex; gap: 1rem; margin-top: 1.8rem; flex-wrap: wrap;">
             <a href="explore.html" class="btn"><i class="fas fa-map-marker-alt"></i> Explore Events</a>
             <a href="events.html" class="btn btn-outline"><i class="fas fa-users"></i> Join Runova</a>
           </div>
         </div>
-        <div class="hero-image">
-          <img src="hero-runova.jpeg" alt="Runners in community event">
-        </div>
+        <div class="hero-image"><img src="hero-runova.jpeg" alt="Runners in community event"></div>
       </div>
     </div>
 
+    <!-- COUNTDOWN SECTION: 365 days countdown to Runova Virtual Marathon -->
+    <div class="container">
+      <div class="countdown-section">
+        <h2>🏆 Runova India Virtual Marathon 2026</h2>
+        <p>365-day countdown to the biggest virtual running celebration. Run from anywhere, earn exclusive medals & rewards.</p>
+        <div class="countdown-timer" id="countdownTimer">
+          <div class="time-card"><div class="time-number" id="days">365</div><div class="time-label">Days</div></div>
+          <div class="time-card"><div class="time-number" id="hours">00</div><div class="time-label">Hours</div></div>
+          <div class="time-card"><div class="time-number" id="minutes">00</div><div class="time-label">Minutes</div></div>
+          <div class="time-card"><div class="time-number" id="seconds">00</div><div class="time-label">Seconds</div></div>
+        </div>
+        <p style="margin-top: 1.2rem;"><i class="fas fa-globe-asia"></i> Virtual event | Distances: 5K, 10K, Half Marathon, Full Marathon | Registration opens soon</p>
+      </div>
+    </div>
+
+    <!-- UPCOMING RUNNING EVENTS IN INDIA (with dates, distances, registration links) -->
+    <div class="container">
+      <div class="events-india">
+        <h2>🇮🇳 Upcoming Running Events in India</h2>
+        <p class="section-subhead">Discover nearby marathons, trail runs & virtual challenges. Register directly through official links.</p>
+        <div class="event-card">
+          <div class="event-info">
+            <div class="event-name">🏁 TCS Mumbai Marathon 2026</div>
+            <div class="event-details"><span><i class="fas fa-calendar-alt"></i> Jan 18, 2026</span><span><i class="fas fa-route"></i> Full, Half, 10K, 5K</span><span><i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra</span></div>
+          </div>
+          <div class="event-register"><a href="#" target="_blank">Register <i class="fas fa-arrow-right"></i></a></div>
+        </div>
+        <div class="event-card">
+          <div class="event-info">
+            <div class="event-name">🌿 Bengaluru Midnight Marathon</div>
+            <div class="event-details"><span><i class="fas fa-calendar-alt"></i> Feb 7, 2026</span><span><i class="fas fa-route"></i> 21K, 10K, 5K</span><span><i class="fas fa-map-marker-alt"></i> Bengaluru, Karnataka</span></div>
+          </div>
+          <div class="event-register"><a href="#" target="_blank">Register <i class="fas fa-arrow-right"></i></a></div>
+        </div>
+        <div class="event-card">
+          <div class="event-info">
+            <div class="event-name">🏔️ Vedanta Delhi Half Marathon</div>
+            <div class="event-details"><span><i class="fas fa-calendar-alt"></i> March 15, 2026</span><span><i class="fas fa-route"></i> 21.1K, 10K, 4.2K</span><span><i class="fas fa-map-marker-alt"></i> New Delhi</span></div>
+          </div>
+          <div class="event-register"><a href="#" target="_blank">Register <i class="fas fa-arrow-right"></i></a></div>
+        </div>
+        <div class="event-card">
+          <div class="event-info">
+            <div class="event-name">🏃‍♀️ Runova Virtual Run Series – April Edition</div>
+            <div class="event-details"><span><i class="fas fa-calendar-alt"></i> April 5-20, 2026</span><span><i class="fas fa-route"></i> 5K / 10K / HM / FM</span><span><i class="fas fa-globe"></i> Virtual (Anywhere in India)</span></div>
+          </div>
+          <div class="event-register"><a href="#" target="_blank">Join Virtually <i class="fas fa-arrow-right"></i></a></div>
+        </div>
+        <div class="event-card">
+          <div class="event-info">
+            <div class="event-name">⛰️ Pune International Running Festival</div>
+            <div class="event-details"><span><i class="fas fa-calendar-alt"></i> May 10, 2026</span><span><i class="fas fa-route"></i> Full, Half, 10K, 3K Fun Run</span><span><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra</span></div>
+          </div>
+          <div class="event-register"><a href="#" target="_blank">Register <i class="fas fa-arrow-right"></i></a></div>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.85rem; text-align: center;"><i class="fas fa-info-circle"></i> Click Register to view official registration pages. More events added weekly.</p>
+      </div>
+    </div>
+
+    <!-- Existing sections (preserved) -->
     <div class="container">
       <div class="community-wrapper">
         <div class="community-text">
           <h2>Run Together, Not Alone</h2>
           <p>Running is better with company. Join a thriving community that cheers, supports, and celebrates every mile.</p>
-          <ul class="bullet-list">
-            <li>Meet local runners in your city</li>
-            <li>Stay consistent with group accountability</li>
-            <li>Join weekly group runs & social miles</li>
-          </ul>
-          <a href="explore.html" class="btn btn-outline" style="margin-top: 0.5rem;">Find your crew <i class="fas fa-arrow-right"></i></a>
+          <ul class="bullet-list"><li>Meet local runners in your city</li><li>Stay consistent with group accountability</li><li>Join weekly group runs & social miles</li></ul>
+          <a href="explore.html" class="btn btn-outline">Find your crew <i class="fas fa-arrow-right"></i></a>
         </div>
-        <div class="community-image">
-          <img src="about-runova.jpeg" alt="Runova community running together">
-        </div>
+        <div class="community-image"><img src="about-runova.jpeg" alt="Runova community running together"></div>
       </div>
     </div>
 
@@ -862,21 +304,9 @@
       <h2>🏅 Event Types for Every Runner</h2>
       <p class="section-subhead">Curated runs, local meetups, and world-class marathons — all in one place.</p>
       <div class="types-grid">
-        <div class="type-card">
-          <div class="type-icon">🏃‍♂️⚡</div>
-          <h3>Official Runova Events</h3>
-          <p>Timed runs, medals, chip-timing & pro photo moments. Organized by Runova crew.</p>
-        </div>
-        <div class="type-card">
-          <div class="type-icon">🌳👟</div>
-          <h3>Local Community Runs</h3>
-          <p>Free park runs, coffee runs & easy-paced social miles hosted by local captains.</p>
-        </div>
-        <div class="type-card">
-          <div class="type-icon">🏅🌍</div>
-          <h3>Upcoming Marathons</h3>
-          <p>Major city marathons, ultra trails & championship qualifiers.</p>
-        </div>
+        <div class="type-card"><div class="type-icon">🏃‍♂️⚡</div><h3>Official Runova Events</h3><p>Timed runs, medals, chip-timing & pro photo moments.</p></div>
+        <div class="type-card"><div class="type-icon">🌳👟</div><h3>Local Community Runs</h3><p>Free park runs, coffee runs & easy-paced social miles.</p></div>
+        <div class="type-card"><div class="type-icon">🏅🌍</div><h3>Upcoming Marathons</h3><p>Major city marathons, ultra trails & championship qualifiers.</p></div>
       </div>
     </div>
 
@@ -884,23 +314,11 @@
       <div class="location-card">
         <h2>📍 Find Events Near You</h2>
         <p>Discover runs within 10km, filter by distance, pace, or date. Your next starting line is around the corner.</p>
-        <div class="map-mock">
-          <div class="pin-wave">
-            <div class="pin"><i class="fas fa-location-dot"></i></div>
-            <div class="pin" style="animation-delay: 0.3s;"><i class="fas fa-flag-checkered"></i></div>
-            <div class="pin" style="animation-delay: 0.6s;"><i class="fas fa-person-running"></i></div>
-          </div>
-          <div class="event-nearby">
-            <span>🏁 Sunset 5K Run</span> <span>0.8km away</span>
-          </div>
-          <div class="event-nearby">
-            <span>🌿 Saturday Trail Run</span> <span>2.3km away</span>
-          </div>
-          <div class="event-nearby">
-            <span>⚡ Runova Night Chase</span> <span>4.1km away</span>
-          </div>
-          <p style="margin-top: 1rem; font-size: 0.85rem;"><i class="fas fa-search-location"></i> Interactive map + live tracking coming soon</p>
-        </div>
+        <div class="map-mock"><div class="pin-wave"><div class="pin"><i class="fas fa-location-dot"></i></div><div class="pin"><i class="fas fa-flag-checkered"></i></div><div class="pin"><i class="fas fa-person-running"></i></div></div>
+        <div class="event-nearby"><span>🏁 Sunset 5K Run</span><span>0.8km away</span></div>
+        <div class="event-nearby"><span>🌿 Saturday Trail Run</span><span>2.3km away</span></div>
+        <div class="event-nearby"><span>⚡ Runova Night Chase</span><span>4.1km away</span></div>
+        <p style="margin-top:1rem"><i class="fas fa-search-location"></i> Interactive map + live tracking coming soon</p></div>
       </div>
     </div>
 
@@ -909,18 +327,9 @@
         <h2>Moments from the Runova Fam</h2>
         <p class="section-subhead">Real runs, real smiles, real community.</p>
         <div class="gallery-grid">
-          <div class="gallery-item">
-            <img src="run-why choise.png" alt="Runner choosing event">
-            <p><i class="fas fa-compass"></i> Find your perfect race</p>
-          </div>
-          <div class="gallery-item">
-            <img src="virtual-runova.jpeg" alt="Virtual run challenge">
-            <p><i class="fas fa-globe"></i> Virtual runs, global reach</p>
-          </div>
-          <div class="gallery-item">
-            <img src="certificate_runova.png" alt="Earn medals & certificates">
-            <p><i class="fas fa-medal"></i> Earn badges & rewards</p>
-          </div>
+          <div class="gallery-item"><img src="run-why choise.png" alt="Runner choosing event"><p><i class="fas fa-compass"></i> Find your perfect race</p></div>
+          <div class="gallery-item"><img src="virtual-runova.jpeg" alt="Virtual run challenge"><p><i class="fas fa-globe"></i> Virtual runs, global reach</p></div>
+          <div class="gallery-item"><img src="certificate_runova.png" alt="Earn medals & certificates"><p><i class="fas fa-medal"></i> Earn badges & rewards</p></div>
         </div>
       </div>
     </div>
@@ -929,10 +338,7 @@
       <div class="cta-section">
         <h2>Ready to Run?</h2>
         <p>Join thousands of runners discovering local events every day. Your next PR starts here.</p>
-        <div>
-          <a href="explore.html" class="btn btn-light"><i class="fas fa-calendar-alt"></i> Explore Events</a>
-          <a href="events.html" class="btn btn-outline-light"><i class="fas fa-heart"></i> Join Runova</a>
-        </div>
+        <div><a href="explore.html" class="btn btn-light"><i class="fas fa-calendar-alt"></i> Explore Events</a><a href="events.html" class="btn btn-outline-light"><i class="fas fa-heart"></i> Join Runova</a></div>
       </div>
     </div>
   </main>
@@ -946,6 +352,8 @@
         <a href="explore.html" class="footer-quick-link"><i class="fas fa-map-marked-alt"></i> Explore</a>
         <a href="events.html" class="footer-quick-link"><i class="fas fa-calendar-check"></i> Events</a>
         <a href="contact.html" class="footer-quick-link"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="#" id="footerPrivacy" class="footer-quick-link"><i class="fas fa-shield-alt"></i> Privacy</a>
+        <a href="#" id="footerTerms" class="footer-quick-link"><i class="fas fa-file-contract"></i> Terms</a>
       </div>
       <p class="copyright">© 2026 Runova. All rights reserved. <i class="fas fa-running"></i> Run Further, Together.</p>
     </div>
@@ -957,50 +365,52 @@
   (function() {
     const overlay = document.getElementById('introOverlay');
     if (overlay) {
-      setTimeout(() => {
-        overlay.classList.add('hide-intro');
-        setTimeout(() => {
-          if (overlay && overlay.parentNode) overlay.style.display = 'none';
-        }, 700);
-      }, 2100);
+      setTimeout(() => { overlay.classList.add('hide-intro'); setTimeout(() => { if(overlay.parentNode) overlay.style.display = 'none'; }, 700); }, 2100);
     }
   })();
 
   // Three dots dropdown toggle
   const dotsIcon = document.getElementById('dotsIcon');
   const dotsDropdown = document.getElementById('dotsDropdown');
-
   if (dotsIcon && dotsDropdown) {
-    dotsIcon.addEventListener('click', (e) => {
-      e.stopPropagation();
-      dotsDropdown.classList.toggle('show');
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!dotsIcon.contains(e.target) && !dotsDropdown.contains(e.target)) {
-        dotsDropdown.classList.remove('show');
-      }
-    });
-
-    // Example actions for demo links
-    const shareLink = document.getElementById('shareLink');
-    const helpLink = document.getElementById('helpLink');
-    if (shareLink) {
-      shareLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('🌐 Share Runova with your running crew! (Copy link: https://runova.example)');
-        dotsDropdown.classList.remove('show');
-      });
-    }
-    if (helpLink) {
-      helpLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('📞 Need help? Reach us at support@runova.com or visit our Help Center.');
-        dotsDropdown.classList.remove('show');
-      });
-    }
+    dotsIcon.addEventListener('click', (e) => { e.stopPropagation(); dotsDropdown.classList.toggle('show'); });
+    document.addEventListener('click', (e) => { if (!dotsIcon.contains(e.target) && !dotsDropdown.contains(e.target)) dotsDropdown.classList.remove('show'); });
   }
+
+  // Privacy & Terms alerts (demo)
+  const privacyLink = document.getElementById('privacyLink');
+  const termsLink = document.getElementById('termsLink');
+  const footerPrivacy = document.getElementById('footerPrivacy');
+  const footerTerms = document.getElementById('footerTerms');
+  const shareLink = document.getElementById('shareLink');
+  if (privacyLink) privacyLink.addEventListener('click', (e) => { e.preventDefault(); alert('📜 Runova Privacy Policy: We respect your data. No sharing without consent. Full policy available upon request.'); dotsDropdown.classList.remove('show'); });
+  if (termsLink) termsLink.addEventListener('click', (e) => { e.preventDefault(); alert('📄 Terms & Conditions: By using Runova, you agree to community guidelines. Virtual events are non-refundable but transferable.'); dotsDropdown.classList.remove('show'); });
+  if (footerPrivacy) footerPrivacy.addEventListener('click', (e) => { e.preventDefault(); alert('📜 Privacy Policy: Your information is safe with Runova.'); });
+  if (footerTerms) footerTerms.addEventListener('click', (e) => { e.preventDefault(); alert('📄 Terms & Conditions: Participation rules apply.'); });
+  if (shareLink) shareLink.addEventListener('click', (e) => { e.preventDefault(); alert('🌐 Share Runova with your running crew! Copy link: https://runova.example'); dotsDropdown.classList.remove('show'); });
+
+  // COUNTDOWN: target date set to 365 days from today (April 8, 2027 for demonstration)
+  // Using a fixed future date: April 8, 2027 (approx 365 days from now)
+  const targetDate = new Date('April 8, 2027 00:00:00').getTime();
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+    if (distance < 0) {
+      document.getElementById('days').innerText = '0'; document.getElementById('hours').innerText = '0';
+      document.getElementById('minutes').innerText = '0'; document.getElementById('seconds').innerText = '0';
+      return;
+    }
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (86400000)) / (3600000));
+    const minutes = Math.floor((distance % 3600000) / 60000);
+    const seconds = Math.floor((distance % 60000) / 1000);
+    document.getElementById('days').innerText = days;
+    document.getElementById('hours').innerText = hours < 10 ? '0'+hours : hours;
+    document.getElementById('minutes').innerText = minutes < 10 ? '0'+minutes : minutes;
+    document.getElementById('seconds').innerText = seconds < 10 ? '0'+seconds : seconds;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 </script>
 </body>
 </html>
